@@ -27,11 +27,13 @@ const Post:React.FC<Props> = ({post}) => {
               </p>
             </div>
           </div>
-          <img
-            src={post.url}
-            className="w-100 h-100 rounded-md  mx-auto"
-            alt="youtube image"
-          />
+          <Link href={`/posts/${post.id}`}>
+            <img
+              src={post.url}
+              className="w-100 h-100 rounded-md  mx-auto"
+              alt="youtube image"
+            />
+          </Link>
           <p>{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
         </div>
