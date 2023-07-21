@@ -14,3 +14,13 @@ export interface ProfileType {
   userId: number;
   user: UserType;
 }
+export interface PostType {
+  id: number;
+  videoId: string;
+  url: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  authorId: number;
+  author: UserType;
+}
