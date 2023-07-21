@@ -36,6 +36,19 @@ const Post:React.FC<Props> = ({post}) => {
           </Link>
           <p>{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
+           {/* タグ情報を表示 */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap mt-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag.id}
+                  className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 mb-2"
+                >
+                  {tag.name}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
