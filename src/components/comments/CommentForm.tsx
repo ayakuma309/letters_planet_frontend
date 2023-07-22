@@ -62,7 +62,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
       <div className="border-b py-2">
         {latestComments && latestComments.map((comment) => (
           <div key={comment.id}>
-            <div className="bg-white shadow-md rounded p-4 mb-4 w-1/2">
+            <div className="bg-white shadow-md rounded p-4 mb-4 w-1/2 mt-10">
               <div className="mb-4">
                 <div className="flex items-center mb-2">
                   <img
@@ -77,8 +77,14 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
                     </p>
                   </div>
                 </div>
-                <p className="text-gray-700">{comment.content}</p>
-                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                <div className="flex justify-between mt-2">
+                  <p className="text-gray-700">{comment.content}</p>
+                  <button
+                    className='p-2 bg-red-500 rounded-md text-white font-bold'
+                    onClick={() => handleDeleteComment(comment.id)}
+                  >Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
