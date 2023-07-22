@@ -32,3 +32,11 @@ export interface TagType {
   postId: number;
   post: PostType;
 }
+
+export interface CommentType {
+  id: number;
+  content: string;
+  createdAt: string;
+  userId: number;
+  user: UserType;
+}

@@ -55,6 +55,7 @@ const Timeline = () => {
               <span
                 className="bg-gray-300 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 mb-2 cursor-pointer"
                 onClick={()=>handleSearch(tag)}
+                key={tag.value}
               >
                 {tag.label}
               </span>
