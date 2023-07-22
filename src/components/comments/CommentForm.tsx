@@ -4,36 +4,23 @@ import { CommentType } from '@/types/types';
 
 interface CommentProps {
   postId: number;
+  comments: CommentType[];
 }
 
-const CommentForm: React.FC<CommentProps> = ({ postId }) => {
-  const [comments, setComments] = useState<CommentType[]>([]);
+const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
   const [commentText, setCommentText] = useState('');
-  // コメントの取得
-  const fetchComments = async () => {
-    try {
-      const response = await apiClient.get(`/comments/comments/${postId}`);
-      setComments(response.data);
-      console.log(comments);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
+  const [latestComments, setLatestComments] = useState<CommentType[]>(comments);
 
   // コメントの投稿
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await apiClient.post('/comments/comment', {
+      const newComment = await apiClient.post('/comments/comment', {
         postId: postId,
         content: commentText,
       });
       // コメント投稿後にコメント一覧を更新
-      fetchComments();
+      setLatestComments((prevComment)=> [newComment.data, ...prevComment]);
       setCommentText('');
     } catch (err) {
       alert('コメントの投稿に失敗しました');
@@ -59,7 +46,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId }) => {
         </button>
       </form>
       <div className="border-b py-2">
-        {comments && comments.map((comment) => (
+        {latestComments && latestComments.map((comment) => (
           <div key={comment.id}>
             <div className="bg-white shadow-md rounded p-4 mb-4 w-1/2">
               <div className="mb-4">

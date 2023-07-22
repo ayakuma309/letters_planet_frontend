@@ -1,23 +1,29 @@
 import React from 'react'
 import apiClient from '@/lib/apiClient';
-import { PostType } from '@/types/types';
+import { CommentType, PostType } from '@/types/types';
 import { GetServerSideProps } from 'next';
 import Youtube from 'react-youtube'
 import TagList from '@/components/posts/TagList';
 import CommentForm from '@/components/comments/CommentForm';
 
 type Props = {
-  post: PostType
+  post: PostType;
+  comments: CommentType[];
 }
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
+  const postId=  id;
   try{
-    const postResponse = await apiClient.get(`/posts/${id}`);
+    const [postResponse, commentsResponse] = await Promise.all([
+      apiClient.get(`/posts/${id}`),
+      apiClient.get(`/comments/comments/${postId}`),
+    ]);
 
     return{
       props: {
         post: postResponse.data,
+        comments: commentsResponse.data
       },
     };
   }catch(err){
@@ -28,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 }
 
-const PostDetail = ({post}: Props ) => {
+const PostDetail = ({post, comments}: Props ) => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white shadow-md rounded p-4 mb-4">
@@ -39,7 +45,7 @@ const PostDetail = ({post}: Props ) => {
           {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
         </div>
       </div>
-      <CommentForm postId={post.id} />
+      <CommentForm postId={post.id} comments={comments}/>
     </div>
   )
 }
