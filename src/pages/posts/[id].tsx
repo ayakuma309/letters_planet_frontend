@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
     return{
       props: {
-        post: postResponse.data[0],
+        post: postResponse.data,
       },
     };
   }catch(err){
