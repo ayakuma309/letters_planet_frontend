@@ -8,9 +8,9 @@ type Props = {
 const TagList: React.FC<Props> = ({ tags }) => {
   return (
     <div className="flex flex-wrap mt-2">
-      {tags.map((tag) => (
+      {tags.map((tag, index) => (
         <span
-          key={tag.id}
+          key={index}
           className="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 mb-2"
         >
           {tag.name}
