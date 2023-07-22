@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Style from "@/styles/search.module.css";
 import VideoGrid from '@/components/search/VideoGrid';
 import { youtube } from '@/lib/youtube';
 import { GetServerSideProps } from 'next';
