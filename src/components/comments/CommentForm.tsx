@@ -28,6 +28,20 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
   };
 
 
+  //コメントの削除
+  const handleDeleteComment = async (commentId: number) => {
+    const shouldDelete = window.confirm('このコメントを削除しますか？');
+    if (!shouldDelete) return;
+
+    try {
+      await apiClient.delete(`/comments/comment/${commentId}`);
+      setLatestComments((prevComment) =>
+        prevComment.filter((comment) => comment.id !== commentId)
+      );
+    } catch (err) {
+      alert('コメントの削除に失敗しました');
+    }
+  }
   return (
     <div className='mt-10'>
       <form onSubmit={handleSubmitComment}>
@@ -64,6 +78,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
                   </div>
                 </div>
                 <p className="text-gray-700">{comment.content}</p>
+                <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
               </div>
             </div>
           </div>
