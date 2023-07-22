@@ -39,6 +39,11 @@ const Timeline = () => {
     setSearchResults(results);
   };
 
+  //投稿の削除
+  const handleDeletePost = (postId: number) => {
+    setLatestPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+  };
+  
   return (
     <div>
       <div className="text-center mb-5">
@@ -64,11 +69,11 @@ const Timeline = () => {
            {/* 検索結果を表示 */}
           {searchResults.length > 0 ? (
             searchResults.map((post: PostType) => (
-              <Post key={post.id} post={post} />
+              <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
             ))
           ) : (
             latestPosts.map((post: PostType) => (
-              <Post key={post.id} post={post} />
+              <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
             ))
           )}
         </main>
