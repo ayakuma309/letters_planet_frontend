@@ -3,6 +3,7 @@ import apiClient from '@/lib/apiClient';
 import { PostType } from '@/types/types';
 import { GetServerSideProps } from 'next';
 import Youtube from 'react-youtube'
+import TagList from '@/components/posts/TagList';
 
 type Props = {
   post: PostType
@@ -34,6 +35,7 @@ const PostDetail = ({post}: Props ) => {
           <Youtube videoId={post.videoId} className="w-100 h-100 rounded-md  mx-auto"/>
           <p>{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
+          {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
         </div>
       </div>
     </div>

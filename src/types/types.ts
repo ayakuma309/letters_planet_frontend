@@ -26,7 +26,7 @@ export interface PostType {
   tags: TagType[];
 }
 
-interface TagType {
+export interface TagType {
   id: number;
   name: string;
   postId: number;
