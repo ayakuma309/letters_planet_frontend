@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Style from "@/styles/search.module.css";
 import VideoGrid from '@/components/search/VideoGrid';
 import { youtube } from '@/lib/youtube';
 import { GetServerSideProps } from 'next';
@@ -25,20 +24,19 @@ const Search = ({ videos }: any) => {
   };
   return (
     <>
-      <div className={Style.header}>
-        <div className={Style.item}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder='検索'
-              onChange={e => setTerm(e.target.value)}
-              value={term}
-            />
-            <button type="submit">
-              検索
-            </button>
-          </form>
-        </div>
+      <div>
+        <form onSubmit={handleSubmit} className='flex justify-center'>
+          <input
+            type="text"
+            placeholder='検索'
+            onChange={e => setTerm(e.target.value)}
+            value={term}
+            className='p-5 rounded-md'
+          />
+          <button type="submit" className='p-4 bg-orange-500 rounded-md text-white font-bold'>
+            検索
+          </button>
+        </form>
       </div>
       <VideoGrid>
         {searchItems.length > 0 ? ( // searchItemsが空でない場合に動画を表示

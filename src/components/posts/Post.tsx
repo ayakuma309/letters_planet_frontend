@@ -1,6 +1,7 @@
 import { PostType } from '@/types/types'
 import Link from 'next/link'
 import React from 'react'
+import TagList from './TagList'
 
 type Props = {
   post: PostType
@@ -36,6 +37,8 @@ const Post:React.FC<Props> = ({post}) => {
           </Link>
           <p>{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
+           {/* タグ情報を表示 */}
+          {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
         </div>
       </div>
     </div>

@@ -23,4 +23,12 @@ export interface PostType {
   createdAt: string;
   authorId: number;
   author: UserType;
+  tags: TagType[];
+}
+
+export interface TagType {
+  id: number;
+  name: string;
+  postId: number;
+  post: PostType;
 }
