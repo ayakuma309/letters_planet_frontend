@@ -44,13 +44,13 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
 
 
   return (
-    <div className='flex flex-col' key={id}>
+    <div className='flex flex-col w-96 my-10 p-10 rounded-md shadow-lg bg-orange-100' key={id}>
       <img src={src} alt={title}/>
       <span>{title}</span>
       <form onSubmit={handleSubmitPost}>
         <textarea
           className="w-full h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="What's on your mind?"
+          placeholder="動画の詳細を教えてください"
           value={postText}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setPostText(e.target.value)}
         ></textarea>

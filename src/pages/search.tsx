@@ -25,20 +25,18 @@ const Search = ({ videos }: any) => {
   };
   return (
     <>
-      <div className={Style.header}>
-        <div className={Style.item}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder='検索'
-              onChange={e => setTerm(e.target.value)}
-              value={term}
-            />
-            <button type="submit">
-              検索
-            </button>
-          </form>
-        </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder='検索'
+            onChange={e => setTerm(e.target.value)}
+            value={term}
+          />
+          <button type="submit">
+            検索
+          </button>
+        </form>
       </div>
       <VideoGrid>
         {searchItems.length > 0 ? ( // searchItemsが空でない場合に動画を表示

@@ -1,5 +1,4 @@
 import React from 'react'
-import Style from "@/styles/search.module.css";
 
 interface VideoGridProps {
   children: React.ReactNode
@@ -7,7 +6,7 @@ interface VideoGridProps {
 
 const VideoGrid:React.FC<VideoGridProps> = ({children}) => {
   return (
-    <div className={Style.container}>
+    <div className="flex flex-wrap justify-evenly m-10">
       {children}
     </div>
   )
