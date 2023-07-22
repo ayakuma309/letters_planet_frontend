@@ -42,9 +42,10 @@ const CommentForm: React.FC<CommentProps> = ({ postId }) => {
 
 
   return (
-    <div>
+    <div className='mt-10'>
       <form onSubmit={handleSubmitComment}>
         <input
+          className='p-4 rounded-md w-1/2'
           type="text"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
@@ -52,7 +53,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId }) => {
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className='p-4 bg-orange-500 rounded-md text-white font-bold'
         >
           コメントを投稿する
         </button>
