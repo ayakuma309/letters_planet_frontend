@@ -4,6 +4,7 @@ import apiClient from '@/lib/apiClient';
 import { PostType } from '@/types/types';
 import tagOptions from '@/json/tag.json'
 import Link from 'next/link';
+import { useAuth } from '@/context/auth';
 
 
 interface OptionType {
@@ -16,6 +17,9 @@ const Timeline = () => {
   const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<PostType[]>([]);
+
+  // ログイン状態を取得
+  const { user } = useAuth();
 
   //最近の投稿を取得
   useEffect(() => {
@@ -43,16 +47,18 @@ const Timeline = () => {
   const handleDeletePost = (postId: number) => {
     setLatestPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
   };
-  
+
   return (
     <div>
-      <div className="text-center mb-5">
-        <Link href="/search">
-          <button className="bg-orange-400 rounded-full p10 w-16 h-16 font-bold text-3xl text-center">
-            +
-          </button>
-        </Link>
-      </div>
+      { user && (
+        <div className="text-center mb-5">
+          <Link href="/search">
+            <button className="bg-orange-400 rounded-full p10 w-16 h-16 font-bold text-3xl text-center">
+              +
+            </button>
+          </Link>
+        </div>
+      )}
       <div className="min-h-screen bg-gray-100">
         <main className="container mx-auto py-4">
           <div className='mt-3 mb-5 flex flex-wrap'>
