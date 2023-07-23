@@ -46,6 +46,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
   }
   return (
     <div className='mt-10'>
+      <p className='font-bold my-1'>投稿した後にTwitter共有すると動画と一緒にメッセージが送れます</p>
       <form onSubmit={handleSubmitComment}>
         <input
           className='p-4 rounded-md w-1/2'
