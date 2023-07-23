@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import TagList from './TagList'
 import apiClient from '@/lib/apiClient'
+import { useAuth } from '@/context/auth'
 
 type Props = {
   post: PostType
@@ -10,6 +11,7 @@ type Props = {
 }
 
 const Post:React.FC<Props> = ({post, onDelete}) => {
+  const { user } = useAuth();
 
   const handleDeletePost = async () => {
     const shouldDelete = window.confirm('この投稿を削除しますか？');
@@ -55,11 +57,13 @@ const Post:React.FC<Props> = ({post, onDelete}) => {
           <div className="flex justify-between mt-2">
             {/* タグ情報を表示 */}
             {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
-            <button
-              className='p-2 bg-red-500 rounded-md text-white font-bold'
-              onClick={handleDeletePost}
-            >Delete
-            </button>
+            { user && (
+              <button
+                className='p-2 bg-red-500 rounded-md text-white font-bold'
+                onClick={handleDeletePost}
+              >Delete
+              </button>
+            )}
           </div>
         </div>
       </div>
