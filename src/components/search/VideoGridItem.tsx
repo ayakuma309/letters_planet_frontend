@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import apiClient from '@/lib/apiClient';
 import { useRouter } from 'next/router';
 import TagSelect from './TagSelect';
+import { toast } from 'react-toastify';
 
 interface VideoGridItemProps {
   id: string;
@@ -37,8 +38,9 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
       setPostText("");
       setSelectedTags([]);
       router.push("/");
+      toast.success("投稿が完了しました");
     } catch (err) {
-      alert("入力内容が正しくありません。");
+      toast.error("投稿に失敗しました");
     }
   };
 

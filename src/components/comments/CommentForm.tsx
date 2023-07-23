@@ -3,6 +3,7 @@ import apiClient from '@/lib/apiClient';
 import { CommentType } from '@/types/types';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 import { useAuth } from '@/context/auth';
+import { toast } from 'react-toastify';
 
 interface CommentProps {
   postId: number;
@@ -26,8 +27,9 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
       // コメント投稿後にコメント一覧を更新
       setLatestComments((prevComment)=> [newComment.data, ...prevComment]);
       setCommentText('');
+      toast.success('コメントを投稿しました');
     } catch (err) {
-      alert('コメントの投稿に失敗しました');
+      toast.error('コメントの投稿に失敗しました');
     }
   };
 
@@ -42,8 +44,9 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
       setLatestComments((prevComment) =>
         prevComment.filter((comment) => comment.id !== commentId)
       );
+      toast.success('コメントを削除しました');
     } catch (err) {
-      alert('コメントの削除に失敗しました');
+      toast.error('コメントの削除に失敗しました');
     }
   }
   return (

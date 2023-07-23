@@ -4,6 +4,7 @@ import React from 'react'
 import TagList from './TagList'
 import apiClient from '@/lib/apiClient'
 import { useAuth } from '@/context/auth'
+import { toast } from 'react-toastify'
 
 type Props = {
   post: PostType
@@ -21,8 +22,9 @@ const Post:React.FC<Props> = ({post, onDelete}) => {
       await apiClient.delete(`/posts/post/${id}`);
       onDelete(id);
       window.location.reload();
+      toast.success('投稿を削除しました');
     } catch (err) {
-      alert('投稿の削除に失敗しました');
+      toast.error('投稿の削除に失敗しました');
     }
   }
   return (
