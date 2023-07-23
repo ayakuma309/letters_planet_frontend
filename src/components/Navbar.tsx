@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="font-semibold text-xl">
           <Link href="/" className="text-2xl font-medium">
-            boss letter
+            すべて教えてくれる
           </Link>
         </h1>
         <nav>

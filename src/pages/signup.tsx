@@ -2,6 +2,8 @@ import apiClient from '@/lib/apiClient'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
+
 
 const SignUp = () => {
   const [username, setUserName] = useState<string>("")
@@ -17,9 +19,10 @@ const SignUp = () => {
       //成功したら
       await apiClient.post("auth/register", { username, email, password })
       router.push("/login")
+      toast.success("登録が完了しました")
     }catch(err: any) {
       //失敗したら
-      alert(err.message)
+      toast.error(err.message)
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import apiClient from "@/lib/apiClient";
+import { toast } from 'react-toastify';
 
 interface AuthContextType {
   user: null | {
@@ -61,16 +62,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try{
       const res = await apiClient.get("/users/find");
       setUser(res.data.user);
+      toast.success("ログインしました");
     }catch(err){
-      console.log(err);
+      toast.error("ログインに失敗しました");
     }
   };
 
   //logout
   const logout = () => {
-    destroyCookie(null, "auth_token");
-    delete apiClient.defaults.headers["Authorization"];
-    setUser(null);
+    const confirmed = window.confirm("ログアウトしますか？");
+    if (confirmed) {
+      destroyCookie(null, "auth_token");
+      delete apiClient.defaults.headers["Authorization"];
+      setUser(null);
+      toast.success("ログアウトしました");
+    }
   };
 
   const value = {

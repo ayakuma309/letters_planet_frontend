@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import VideoGrid from '@/components/search/VideoGrid';
-import { youtube } from '@/lib/youtube';
+import { youtube, fetchSearchData } from '@/lib/youtube';
 import { GetServerSideProps } from 'next';
 import VideoGridItem from '@/components/search/VideoGridItem';
 
 const Search = ({ videos }: any) => {
   const [term, setTerm] = useState('');
   const [searchItems, setSearchItems] = useState(videos);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (term.trim() === '') {
+      return;
+    }
     try {
-      const response = await youtube.get('/search', {
-        params: {
-          q: term, // 検索ワードをパラメータに追加
-        },
-      });
+      const response = await fetchSearchData(term);
       setSearchItems(response.data.items);
+      setTerm(''); // 検索ワードをクリア
     } catch (error) {
       console.log(error);
-      setSearchItems([]); // エラー時は空の配列を設定
+      setSearchItems([]);
     }
   };
+
   return (
     <>
       <div>
