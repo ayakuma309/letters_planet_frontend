@@ -50,7 +50,7 @@ const Timeline = () => {
 
   return (
     <div>
-      { user && (
+      {/* { user && (
         <div className="text-center mb-5">
           <Link href="/search">
             <button className="bg-orange-400 rounded-full p10 w-16 h-16 font-bold text-3xl text-center">
@@ -58,13 +58,13 @@ const Timeline = () => {
             </button>
           </Link>
         </div>
-      )}
+      )} */}
       <div className="min-h-screen">
         <main className="container mx-auto py-4">
           <div className='mt-3 mb-5 flex flex-wrap'>
             {tagOptions && tagOptions.map((tag) => (
               <span
-                className="bg-gray-300 text-gray-800 p-4 py-1 rounded-full text-xs mr-2 mb-2 cursor-pointer"
+                className="bg-white text-gray-800 p-4 rounded-md text-xs mr-2 mb-2 cursor-pointer"
                 onClick={()=>handleSearch(tag)}
                 key={tag.value}
               >
