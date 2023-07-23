@@ -5,6 +5,7 @@ import { GetServerSideProps } from 'next';
 import Youtube from 'react-youtube'
 import TagList from '@/components/posts/TagList';
 import CommentForm from '@/components/comments/CommentForm';
+import { useAuth } from '@/context/auth';
 
 type Props = {
   post: PostType;
@@ -35,6 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 }
 
 const PostDetail = ({post, comments}: Props ) => {
+  const { user } = useAuth();
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-white shadow-md rounded p-4 mb-4">
@@ -45,7 +47,9 @@ const PostDetail = ({post, comments}: Props ) => {
           {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
         </div>
       </div>
-      <CommentForm postId={post.id} comments={comments}/>
+      {user && (
+        <CommentForm postId={post.id} comments={comments}/>
+      )}
     </div>
   )
 }

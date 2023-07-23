@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { PostType } from '@/types/types';
-import TagList from '../posts/TagList';
 
 type Props = {
   post: PostType
