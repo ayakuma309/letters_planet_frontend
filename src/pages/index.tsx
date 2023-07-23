@@ -11,11 +11,11 @@ export default function Home() {
                 <h1 className="md:mb-5 text-xl md:text-2xl lg:text-3xl font-bold">
                   何をすべきか、わからない<br/>何したらいいのか
                 </h1>
-                <p className="mt-3 mb-5 md:text-lg hidden sm:flex">
-                  そんなあなたを助けてくれます。<br />そして手紙であなたの気持ちを伝えることができます。
+                <p className="mt-3 mb-5 md:text-lg sm:flex">
+                  そんなあなたを助けてくれます。<br />そしてメッセージを送って<br />あなたの気持ちを伝えることができます。
                 </p>
                 <Link href="/random_page">
-                  <button className="p-4 rounded-md btn border-none hidden sm:inline-block bg-gradient-to-r from-orange-400 via-yellow-300 to-white hover:bg-gradient-to-r hover:from-white hover:via-yellow-300 hover:to-orange-400">
+                  <button className="p-4 rounded-md btn border-none sm:inline-block bg-gradient-to-r from-orange-400 via-yellow-300 to-white hover:bg-gradient-to-r hover:from-white hover:via-yellow-300 hover:to-orange-400">
                     覗いてみる
                   </button>
                 </Link>
