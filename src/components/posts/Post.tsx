@@ -24,7 +24,7 @@ const Post:React.FC<Props> = ({post, onDelete}) => {
     }
   }
   return (
-    <div>
+    <div className='w-1/2'>
       <div className="bg-white shadow-md rounded p-4 mb-4">
         <div className="mb-4">
           <div className="flex items-center mb-2">
@@ -50,7 +50,7 @@ const Post:React.FC<Props> = ({post, onDelete}) => {
               alt="youtube image"
             />
           </Link>
-          <p>{post.title}</p>
+          <p className='break-words'>{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
           <div className="flex justify-between mt-2">
             {/* タグ情報を表示 */}

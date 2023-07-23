@@ -59,12 +59,12 @@ const Timeline = () => {
           </Link>
         </div>
       )}
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen">
         <main className="container mx-auto py-4">
           <div className='mt-3 mb-5 flex flex-wrap'>
             {tagOptions && tagOptions.map((tag) => (
               <span
-                className="bg-gray-300 text-gray-800 px-2 py-1 rounded-full text-xs mr-2 mb-2 cursor-pointer"
+                className="bg-gray-300 text-gray-800 p-4 py-1 rounded-full text-xs mr-2 mb-2 cursor-pointer"
                 onClick={()=>handleSearch(tag)}
                 key={tag.value}
               >
@@ -72,16 +72,18 @@ const Timeline = () => {
               </span>
             ))}
           </div>
-           {/* 検索結果を表示 */}
-          {searchResults.length > 0 ? (
-            searchResults.map((post: PostType) => (
-              <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
-            ))
-          ) : (
-            latestPosts.map((post: PostType) => (
-              <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
-            ))
-          )}
+          <div className='flex flex-wrap justify-between p-4'>
+            {/* 検索結果を表示 */}
+            {searchResults.length > 0 ? (
+              searchResults.map((post: PostType) => (
+                <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
+              ))
+            ) : (
+              latestPosts.map((post: PostType) => (
+                <Post key={post.id} post={post} onDelete={(postId) => handleDeletePost(postId)} />
+              ))
+            )}
+          </div>
         </main>
       </div>
     </div>
