@@ -32,8 +32,11 @@ const RandomPosts = () => {
     <>
       <div className='flex flex-wrap  my-10 justify-center'>
         <div>
-          <p className='text-3xl font-bold'>本日の最高の動画</p>
-          <p className='my-3'>詳細ページでメッセージを💌</p>
+          <p className='text-3xl font-bold'>あなたは最高の動画を受け取りました</p>
+          <p className='my-3'>
+            詳細ページでメッセージを💌<br />
+            (⚠️ログインしてないとメッセージは送れません)
+          </p>
         </div>
         <div className='flex flex-wrap my-10 justify-center'>
           {randomPosts.map((post: PostType) => (
