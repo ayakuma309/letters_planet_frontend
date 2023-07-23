@@ -68,9 +68,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   //logout
   const logout = () => {
-    destroyCookie(null, "auth_token");
-    delete apiClient.defaults.headers["Authorization"];
-    setUser(null);
+    const confirmed = window.confirm("ログアウトしますか？");
+    if (confirmed) {
+      destroyCookie(null, "auth_token");
+      delete apiClient.defaults.headers["Authorization"];
+      setUser(null);
+    }
   };
 
   const value = {
