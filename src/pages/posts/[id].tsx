@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const postId=  id;
   try{
     const [postResponse, commentsResponse] = await Promise.all([
-      apiClient.get(`/posts/${id}`),
+      apiClient.get(`/posts/post/${id}`),
       apiClient.get(`/comments/comments/${postId}`),
     ]);
 
