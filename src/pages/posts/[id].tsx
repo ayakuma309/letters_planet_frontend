@@ -48,7 +48,7 @@ const PostDetail = ({post, comments}: Props ) => {
         </div>
       </div>
       {user && (
-        <CommentForm postId={post.id} comments={comments}/>
+        <CommentForm postId={post.id} comments={comments} videoId={post.videoId}/>
       )}
     </div>
   )

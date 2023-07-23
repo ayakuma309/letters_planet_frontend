@@ -1,13 +1,15 @@
 import React, { useEffect, useState} from 'react';
 import apiClient from '@/lib/apiClient';
 import { CommentType } from '@/types/types';
+import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 interface CommentProps {
   postId: number;
   comments: CommentType[];
+  videoId: string;
 }
 
-const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
+const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
   const [commentText, setCommentText] = useState('');
   const [latestComments, setLatestComments] = useState<CommentType[]>(comments);
 
@@ -50,7 +52,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
           type="text"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          placeholder="この動画について手紙を送ろう"
+          placeholder="この動画について100文字以内で手紙を送ろう"
         />
         <button
           type="submit"
@@ -77,8 +79,18 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
                     </p>
                   </div>
                 </div>
-                <div className="flex justify-between mt-2">
-                  <p className="text-gray-700">{comment.content}</p>
+                <p className="text-gray-700">{comment.content}</p>
+                <div className="flex justify-end mt-2 mx-1">
+                  <TwitterShareButton
+                    title={`${comment.content}`}
+                    hashtags={["校長への感謝"]}
+                    url={`https://www.youtube.com/watch?v=${videoId}`}
+                  >
+                    <TwitterIcon
+                      className="text-white font-bold rounded-full mr-5"
+                      size={"32px"}
+                    />
+                  </TwitterShareButton>
                   <button
                     className='p-2 bg-red-500 rounded-md text-white font-bold'
                     onClick={() => handleDeleteComment(comment.id)}
