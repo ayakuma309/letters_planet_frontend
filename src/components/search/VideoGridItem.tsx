@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import apiClient from '@/lib/apiClient';
 import { useRouter } from 'next/router';
-import Select from 'react-select';
-import tagOptions from '@/json/tag.json'
+import TagSelect from './TagSelect';
+
 interface VideoGridItemProps {
   id: string;
   src: string;
@@ -54,13 +54,7 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
           value={postText}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setPostText(e.target.value)}
         ></textarea>
-        <Select
-          isMulti
-          options={tagOptions}
-          value={selectedTags}
-          onChange={(selectedTags) => setSelectedTags(selectedTags as OptionType[])}
-          placeholder="タグを選択してください"
-        />
+        <TagSelect value={selectedTags} onChange={(tags) => setSelectedTags(tags)} />
         <button
           type="submit"
           className="mt-2 bg-gray-700 hover:bg-green-700 duration-200 text-white font-semibold py-2 px-4 rounded"
