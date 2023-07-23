@@ -50,13 +50,13 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments}) => {
           type="text"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          placeholder="この動画の感想をコメントしてください"
+          placeholder="この動画について手紙を送ろう"
         />
         <button
           type="submit"
           className='p-4 bg-orange-500 rounded-md text-white font-bold'
         >
-          コメントを投稿する
+          投稿する
         </button>
       </form>
       <div className="border-b py-2">
