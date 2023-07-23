@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import apiClient from '@/lib/apiClient';
 import { CommentType } from '@/types/types';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
+import { useAuth } from '@/context/auth';
 
 interface CommentProps {
   postId: number;
@@ -12,6 +13,7 @@ interface CommentProps {
 const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
   const [commentText, setCommentText] = useState('');
   const [latestComments, setLatestComments] = useState<CommentType[]>(comments);
+  const { user } = useAuth();
 
   // コメントの投稿
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -92,11 +94,13 @@ const CommentForm: React.FC<CommentProps> = ({ postId , comments, videoId}) => {
                       size={"32px"}
                     />
                   </TwitterShareButton>
-                  <button
-                    className='p-2 bg-red-500 rounded-md text-white font-bold'
-                    onClick={() => handleDeleteComment(comment.id)}
-                  >Delete
-                  </button>
+                  {user && comment.user && user.id === comment.user.id && (
+                    <button
+                      className='p-2 bg-red-500 rounded-md text-white font-bold'
+                      onClick={() => handleDeleteComment(comment.id)}
+                    >Delete
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -57,7 +57,7 @@ const Post:React.FC<Props> = ({post, onDelete}) => {
           <div className="flex justify-between mt-2">
             {/* タグ情報を表示 */}
             {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
-            { user && (
+            {user && post.author && user.id === post.author.id && (
               <button
                 className='p-2 bg-red-500 rounded-md text-white font-bold'
                 onClick={handleDeletePost}
