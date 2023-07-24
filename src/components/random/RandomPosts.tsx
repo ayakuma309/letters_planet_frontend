@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 const RandomPosts = () => {
   const [randomPosts, setRandomPosts] = useState<PostType[]>([]); // ランダムな3つの投稿
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLatestPosts = async () => {
@@ -15,8 +16,10 @@ const RandomPosts = () => {
         const randomIndices = getRandomIndices(res.data.length, 3);
         const randomPosts = randomIndices.map((index) => res.data[index]);
         setRandomPosts(randomPosts);
+        setLoading(false);
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
     fetchLatestPosts();
@@ -27,6 +30,10 @@ const RandomPosts = () => {
     const shuffled = indices.sort(() => Math.random() - 0.5);
     return shuffled.slice(0, count);
   };
+
+  if (loading) {
+    return <p>時間がかかることをお許しください...</p>;
+  }
 
   return (
     <>
