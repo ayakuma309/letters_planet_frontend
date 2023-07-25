@@ -1,15 +1,15 @@
-import React from 'react'
-import Link from 'next/link'
-import { PostType } from '@/types/types';
-import { TwitterIcon, TwitterShareButton } from 'react-share';
+import React from "react";
+import Link from "next/link";
+import { PostType } from "@/types/types";
+import { TwitterIcon, TwitterShareButton } from "react-share";
 
 type Props = {
-  post: PostType
-}
+  post: PostType;
+};
 
-const RandomPost:React.FC<Props> = ({post}) => {
+const RandomPost: React.FC<Props> = ({ post }) => {
   return (
-    <div style={{width: "300px"}}>
+    <div style={{ width: "300px" }}>
       <TwitterShareButton
         title={`${post.title}`}
         hashtags={["校長への感謝"]}
@@ -32,7 +32,7 @@ const RandomPost:React.FC<Props> = ({post}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RandomPost
+export default RandomPost;

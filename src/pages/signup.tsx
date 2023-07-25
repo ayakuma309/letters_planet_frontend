@@ -1,30 +1,29 @@
-import apiClient from '@/lib/apiClient'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import { toast } from 'react-toastify';
-
+import apiClient from "@/lib/apiClient";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
-  const [username, setUserName] = useState<string>("")
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+  const [username, setUserName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
     //新規登録を行うAPIをたたく
     try {
       //成功したら
-      await apiClient.post("auth/register", { username, email, password })
-      router.push("/login")
-      toast.success("登録が完了しました")
-    }catch(err: any) {
+      await apiClient.post("auth/register", { username, email, password });
+      router.push("/login");
+      toast.success("登録が完了しました");
+    } catch (err: any) {
       //失敗したら
-      toast.error(err.message)
+      toast.error(err.message);
     }
-  }
+  };
 
   return (
     <div
@@ -105,7 +104,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignUp;

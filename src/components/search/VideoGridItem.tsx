@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import apiClient from '@/lib/apiClient';
-import { useRouter } from 'next/router';
-import TagSelect from './TagSelect';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import apiClient from "@/lib/apiClient";
+import { useRouter } from "next/router";
+import TagSelect from "./TagSelect";
+import { toast } from "react-toastify";
 
 interface VideoGridItemProps {
   id: string;
@@ -15,8 +15,8 @@ interface OptionType {
   label: string;
 }
 
-const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
-  const [postText, setPostText] = useState('');
+const VideoGridItem: React.FC<VideoGridItemProps> = ({ id, src, title }) => {
+  const [postText, setPostText] = useState("");
   const [selectedTags, setSelectedTags] = useState<OptionType[]>([]);
 
   const router = useRouter();
@@ -27,7 +27,7 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
       const selectedTagNames = selectedTags.map((tag) => tag.label);
 
       await apiClient.post("/posts/post", {
-        videoId : id,
+        videoId: id,
         url: src,
         title: title,
         description: postText,
@@ -44,19 +44,26 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
     }
   };
 
-
   return (
-    <div className='flex flex-col w-96 my-10 p-10 rounded-md shadow-lg bg-orange-100' key={id}>
-      <img src={src} alt={title}/>
+    <div
+      className="flex flex-col w-96 my-10 p-10 rounded-md shadow-lg bg-orange-100"
+      key={id}
+    >
+      <img src={src} alt={title} />
       <span>{title}</span>
       <form onSubmit={handleSubmitPost}>
         <textarea
           className="w-full h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="動画の詳細を教えてください"
           value={postText}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setPostText(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setPostText(e.target.value)
+          }
         ></textarea>
-        <TagSelect value={selectedTags} onChange={(tags) => setSelectedTags(tags)} />
+        <TagSelect
+          value={selectedTags}
+          onChange={(tags) => setSelectedTags(tags)}
+        />
         <button
           type="submit"
           className="mt-2 bg-gray-700 hover:bg-green-700 duration-200 text-white font-semibold py-2 px-4 rounded"
@@ -65,7 +72,7 @@ const VideoGridItem:React.FC<VideoGridItemProps> = ({id,src,title}) => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default VideoGridItem
+export default VideoGridItem;

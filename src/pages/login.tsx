@@ -1,12 +1,12 @@
-import { useAuth } from '@/context/auth'
-import apiClient from '@/lib/apiClient'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import { useAuth } from "@/context/auth";
+import apiClient from "@/lib/apiClient";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const router = useRouter();
   const { login } = useAuth();
@@ -93,7 +93,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

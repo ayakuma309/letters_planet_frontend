@@ -1,5 +1,5 @@
-import RandomPosts from '@/components/random/RandomPosts'
-import React from 'react'
+import RandomPosts from "@/components/random/RandomPosts";
+import React from "react";
 
 const random_page = () => {
   return (
@@ -8,7 +8,7 @@ const random_page = () => {
     >
       <RandomPosts />
     </main>
-  )
-}
+  );
+};
 
-export default random_page
+export default random_page;

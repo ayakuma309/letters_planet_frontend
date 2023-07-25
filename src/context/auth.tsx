@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import { parseCookies, setCookie, destroyCookie } from "nookies";
 import apiClient from "@/lib/apiClient";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 interface AuthContextType {
   user: null | {
@@ -23,14 +23,12 @@ const AuthContext = React.createContext<AuthContextType>({
   logout: () => {},
 });
 
-
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<null | {
     id: number;
     email: string;
     username: string;
   }>(null);
-
 
   //tokenがあるならserの情報を取得
   useEffect(() => {
@@ -59,11 +57,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
     apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
 
-    try{
+    try {
       const res = await apiClient.get("/users/find");
       setUser(res.data.user);
       toast.success("ログインしました");
-    }catch(err){
+    } catch (err) {
       toast.error("ログインに失敗しました");
     }
   };
@@ -83,15 +81,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     user,
     login,
     logout,
-  }
+  };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
 
 export const useAuth = () => {
   return useContext(AuthContext);
-}
+};
