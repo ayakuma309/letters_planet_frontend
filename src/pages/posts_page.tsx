@@ -1,5 +1,5 @@
-import React from 'react'
-import Timeline from '@/components/posts/Timeline'
+import React from "react";
+import Timeline from "@/components/posts/Timeline";
 
 const posts_page = () => {
   return (
@@ -8,7 +8,7 @@ const posts_page = () => {
     >
       <Timeline />
     </main>
-  )
-}
+  );
+};
 
-export default posts_page
+export default posts_page;

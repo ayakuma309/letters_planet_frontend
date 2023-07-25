@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import VideoGrid from '@/components/search/VideoGrid';
-import { youtube, fetchSearchData } from '@/lib/youtube';
-import { GetServerSideProps } from 'next';
-import VideoGridItem from '@/components/search/VideoGridItem';
+import React, { useState } from "react";
+import VideoGrid from "@/components/search/VideoGrid";
+import { youtube, fetchSearchData } from "@/lib/youtube";
+import { GetServerSideProps } from "next";
+import VideoGridItem from "@/components/search/VideoGridItem";
 
 const Search = ({ videos }: any) => {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState("");
   const [searchItems, setSearchItems] = useState(videos);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (term.trim() === '') {
+    if (term.trim() === "") {
       return;
     }
     try {
       const response = await fetchSearchData(term);
       setSearchItems(response.data.items);
-      setTerm(''); // 検索ワードをクリア
+      setTerm(""); // 検索ワードをクリア
     } catch (error) {
       console.log(error);
       setSearchItems([]);
@@ -25,22 +25,25 @@ const Search = ({ videos }: any) => {
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit} className='flex justify-center'>
+        <form onSubmit={handleSubmit} className="flex justify-center">
           <input
             type="text"
-            placeholder='検索'
-            onChange={e => setTerm(e.target.value)}
+            placeholder="検索"
+            onChange={(e) => setTerm(e.target.value)}
             value={term}
-            className='p-5 rounded-md'
+            className="p-5 rounded-md"
           />
-          <button type="submit" className='p-4 bg-orange-500 rounded-md text-white font-bold'>
+          <button
+            type="submit"
+            className="p-4 bg-orange-500 rounded-md text-white font-bold"
+          >
             検索
           </button>
         </form>
       </div>
       <VideoGrid>
         {searchItems.length > 0 ? ( // searchItemsが空でない場合に動画を表示
-          searchItems.map((search:any) => {
+          searchItems.map((search: any) => {
             return (
               <VideoGridItem
                 id={search.id.videoId}
@@ -62,9 +65,9 @@ export default Search;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
-    const response = await youtube.get('/search', {
+    const response = await youtube.get("/search", {
       params: {
-        q: 'エンジニア転職チャンネル', // 初期の検索ワードを設定
+        q: "エンジニア転職チャンネル", // 初期の検索ワードを設定
       },
     });
     const videos = response.data.items;

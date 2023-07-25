@@ -1,15 +1,11 @@
-import React from 'react'
+import React from "react";
 
 interface VideoGridProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const VideoGrid:React.FC<VideoGridProps> = ({children}) => {
-  return (
-    <div className="flex flex-wrap justify-evenly m-10">
-      {children}
-    </div>
-  )
-}
+const VideoGrid: React.FC<VideoGridProps> = ({ children }) => {
+  return <div className="flex flex-wrap justify-evenly m-10">{children}</div>;
+};
 
-export default VideoGrid
+export default VideoGrid;

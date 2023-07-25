@@ -6,7 +6,6 @@ export interface UserType {
   profile: ProfileType;
 }
 
-
 export interface ProfileType {
   id: number;
   bio: string;
