@@ -13,11 +13,11 @@ const SeoSetting = () => {
 			</Head>
 			<DefaultSeo
 				defaultTitle="letters tube"
-				description="何したら良いかわからない"
+				description="どれから見たら良いかわからないを解決するサービスです"
 				openGraph={{
 					type: "website",
 					title: "letters tube",
-					description: "何したら良いかわからない",
+					description: "どれから見たら良いかわからないを解決するサービスです",
 					site_name: "letters tube",
 					url: "https://letters-festival.vercel.app/",
 					images: [

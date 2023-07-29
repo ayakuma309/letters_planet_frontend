@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/auth";
 import apiClient from "@/lib/apiClient";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -87,6 +88,11 @@ const Login = () => {
                 >
                   ログイン
                 </button>
+                <Link href="/signup">
+                  <button className="text-center mt-4 text-sm text-gray-600 hover:text-gray-700">
+                    アカウントをお持ちでない方はこちら
+                  </button>
+                </Link>
               </div>
             </form>
           </div>

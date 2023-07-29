@@ -1,5 +1,6 @@
 import apiClient from "@/lib/apiClient";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -99,6 +100,11 @@ const SignUp = () => {
               >
                 新規登録
               </button>
+              <Link href="/login">
+                <button className="text-center mt-4 text-sm text-gray-600 hover:text-gray-700">
+                  既にアカウントをお持ちの方はこちら
+                </button>
+              </Link>
             </div>
           </form>
         </div>
