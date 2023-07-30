@@ -3,6 +3,7 @@ import { PostType } from "@/types/types";
 import apiClient from "@/lib/apiClient";
 import RandomPost from "./RandomPost";
 import Link from "next/link";
+import { ThreeDots } from "react-loader-spinner";
 
 const RandomPosts = () => {
   const [randomPosts, setRandomPosts] = useState<PostType[]>([]); // ランダムな3つの投稿
@@ -32,7 +33,19 @@ const RandomPosts = () => {
   };
 
   if (loading) {
-    return <p>時間がかかることをお許しください...</p>;
+    return(
+      <p>
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="#fcede6"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          visible={true}
+          />
+      </p>
+    );
   }
 
   return (
