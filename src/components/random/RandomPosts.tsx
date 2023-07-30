@@ -7,20 +7,21 @@ import { ThreeDots } from "react-loader-spinner";
 
 const RandomPosts = () => {
   const [randomPosts, setRandomPosts] = useState<PostType[]>([]); // ランダムな3つの投稿
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchLatestPosts = async () => {
+      setLoading(true);
       try {
         const res = await apiClient.get("/posts/get_latest_posts");
 
         const randomIndices = getRandomIndices(res.data.length, 3);
         const randomPosts = randomIndices.map((index) => res.data[index]);
         setRandomPosts(randomPosts);
-        setLoading(false);
       } catch (err) {
         console.log(err);
-        setLoading(false);
+      } finally {
+        setLoading(false); // ローディング終了
       }
     };
     fetchLatestPosts();
@@ -32,41 +33,39 @@ const RandomPosts = () => {
     return shuffled.slice(0, count);
   };
 
-  if (loading) {
-    return(
-      <p>
-        <ThreeDots
-          height="80"
-          width="80"
-          radius="9"
-          color="#fcede6"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          visible={true}
-          />
-      </p>
-    );
-  }
-
   return (
     <>
-      <div className="flex flex-wrap  my-10 justify-center">
+      {loading ? (
         <div>
-          <p className="text-3xl font-bold">
-            あなたは最高の動画を受け取りました
-          </p>
-          <p className="my-3">
-            詳細ページでメッセージを送ってみましょう
-            <br />
-            (⚠️ログインしてないとメッセージは送れません)
-          </p>
+          <ThreeDots
+            height="80"
+            width="80"
+            radius="9"
+            color="#fcede6"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            visible={true}
+          />
         </div>
-        <div className="flex flex-wrap my-10 justify-center">
-          {randomPosts.map((post: PostType) => (
-            <RandomPost key={post.id} post={post} />
-          ))}
+      ) : (
+        <div className="flex flex-wrap  my-10 justify-center">
+          <div>
+            <p className="text-3xl font-bold">
+              あなたは最高の動画を受け取りました
+            </p>
+            <p className="my-3">
+              詳細ページでメッセージを送ってみましょう
+              <br />
+              (⚠️ログインしてないとメッセージは送れません)
+            </p>
+          </div>
+          <div className="flex flex-wrap my-10 justify-center">
+            {randomPosts && randomPosts.map((post: PostType) => (
+              <RandomPost key={post.id} post={post} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <Link href={`/posts_page`}>
         <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
           一覧へ
@@ -76,4 +75,4 @@ const RandomPosts = () => {
   );
 };
 
-export default RandomPosts;
+export default React.memo(RandomPosts);

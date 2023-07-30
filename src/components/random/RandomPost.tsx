@@ -35,4 +35,4 @@ const RandomPost: React.FC<Props> = ({ post }) => {
   );
 };
 
-export default RandomPost;
+export default React.memo(RandomPost);

@@ -20,6 +20,10 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
   // コメントの投稿
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (commentText.trim() === '') {
+      // コメントが空の場合は送信しない
+      return;
+    }
     try {
       const newComment = await apiClient.post("/comments/comment", {
         postId: postId,
