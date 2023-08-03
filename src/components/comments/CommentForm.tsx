@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import apiClient from "@/lib/apiClient";
 import { CommentType } from "@/types/types";
-import { TwitterIcon, TwitterShareButton } from "react-share";
+import {  TwitterShareButton } from "react-share";
 import { useAuth } from "@/context/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -103,10 +103,11 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
                       hashtags={["校長への感謝"]}
                       url={`https://www.youtube.com/watch?v=${videoId}`}
                     >
-                      <TwitterIcon
-                        className="text-white font-bold rounded-full mr-5"
-                        size={"32px"}
-                      />
+                      <div
+                        className="text-white font-bold rounded-full mr-5 bg-black  py-1 px-2"
+                      >
+                        \uD835\uDD4F
+                      </div>
                     </TwitterShareButton>
                     {user && comment.user && user.id === comment.user.id && (
                       <button

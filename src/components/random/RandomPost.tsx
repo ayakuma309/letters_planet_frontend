@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { PostType } from "@/types/types";
-import { TwitterIcon, TwitterShareButton } from "react-share";
+import { TwitterShareButton } from "react-share";
 
 type Props = {
   post: PostType;
@@ -15,10 +15,11 @@ const RandomPost: React.FC<Props> = ({ post }) => {
         hashtags={["校長への感謝"]}
         url={`https://www.youtube.com/watch?v=${post.videoId}`}
       >
-        <TwitterIcon
-          className="text-white font-bold rounded-full mr-5"
-          size={"32px"}
-        />
+        <div
+          className="text-white font-bold rounded-full mr-5 bg-black  py-1 px-2"
+        >
+          \uD835\uDD4F
+        </div>
       </TwitterShareButton>
       <div className="bg-white shadow-md rounded p-4 m-1 ">
         <div>
