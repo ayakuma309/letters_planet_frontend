@@ -5,6 +5,7 @@ import {  TwitterShareButton } from "react-share";
 import { useAuth } from "@/context/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { CommentSchema } from "@/schemas/comment";
 
 interface CommentProps {
   postId: number;
@@ -25,6 +26,13 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
       return;
     }
     try {
+
+      // コメントのバリデーション
+      CommentSchema.parse({
+        postId: postId,
+        content: commentText,
+      });
+
       const newComment = await apiClient.post("/comments/comment", {
         postId: postId,
         content: commentText,
@@ -53,6 +61,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
       toast.error("コメントの削除に失敗しました");
     }
   };
+
   return (
     <div className="mt-10">
       <p className="font-bold my-1">
@@ -64,7 +73,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
           type="text"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          placeholder="この動画について100文字以内で手紙を送ろう"
+          placeholder="この動画について80文字以内で手紙を送ろう"
         />
         <button
           type="submit"
