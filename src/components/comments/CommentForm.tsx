@@ -5,7 +5,6 @@ import {  TwitterShareButton } from "react-share";
 import { useAuth } from "@/context/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { CommentSchema } from "@/schemas/comment";
 
 interface CommentProps {
   postId: number;
@@ -26,13 +25,6 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
       return;
     }
     try {
-
-      // コメントのバリデーション
-      CommentSchema.parse({
-        postId: postId,
-        content: commentText,
-      });
-
       const newComment = await apiClient.post("/comments/comment", {
         postId: postId,
         content: commentText,
