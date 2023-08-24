@@ -57,7 +57,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
   return (
     <div className="mt-10">
       <p className="font-bold my-1">
-        投稿した後にTwitter共有すると動画と一緒にメッセージが送れます
+        動画と一緒にメッセージが送れます
       </p>
       <form onSubmit={handleSubmitComment}>
         <input
@@ -65,7 +65,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
           type="text"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          placeholder="この動画について80文字以内で手紙を送ろう"
+          placeholder="この動画について"
         />
         <button
           type="submit"
