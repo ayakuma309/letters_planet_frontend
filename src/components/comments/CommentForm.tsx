@@ -97,7 +97,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
                       </p>
                     </div>
                   </div>
-                  <p className="text-gray-700">{comment.content}</p>
+                  <p className="text-gray-700 break-all">{comment.content}</p>
                   <div className="flex justify-end mt-2 mx-1">
                     <TwitterShareButton
                       title={`${comment.content}`}
