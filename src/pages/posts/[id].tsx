@@ -6,6 +6,7 @@ import Youtube from "react-youtube";
 import TagList from "@/components/posts/TagList";
 import CommentForm from "@/components/comments/CommentForm";
 import { useAuth } from "@/context/auth";
+import { TwitterShareButton } from "react-share";
 
 type Props = {
   post: PostType;
@@ -47,14 +48,25 @@ const PostDetail = ({ post, comments }: Props) => {
           />
           <p className="text-xl font-bold my-2">{post.title}</p>
           <p className="text-gray-700">{post.description}</p>
-          {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
+          <div className="flex justify-between">
+            {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
+            <TwitterShareButton
+              hashtags={["おすすめ動画"]}
+              url={`https://www.youtube.com/watch?v=${post.videoId}`}
+            >
+              <div
+                className="text-white font-bold rounded mr-5 bg-black px-2 py-1"
+              >
+                \uD835\uDD4F
+              </div>
+            </TwitterShareButton>
+          </div>
         </div>
       </div>
       {user && (
         <CommentForm
           postId={post.id}
           comments={comments}
-          videoId={post.videoId}
         />
       )}
     </div>

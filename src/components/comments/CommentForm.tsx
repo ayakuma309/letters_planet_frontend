@@ -5,14 +5,14 @@ import {  TwitterShareButton } from "react-share";
 import { useAuth } from "@/context/auth";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
 interface CommentProps {
   postId: number;
   comments: CommentType[];
-  videoId: string;
 }
 
-const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
+const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
   const [commentText, setCommentText] = useState("");
   const [latestComments, setLatestComments] = useState<CommentType[]>(comments);
   const { user } = useAuth();
@@ -97,19 +97,12 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments, videoId }) => {
                       </p>
                     </div>
                   </div>
-                  <p className="text-gray-700 break-all">{comment.content}</p>
+                  <p className="text-gray-700 break-all">
+                  <TwitterTweetEmbed
+                    tweetId={`${comment.content}`}
+                  />
+                  </p>
                   <div className="flex justify-end mt-2 mx-1">
-                    <TwitterShareButton
-                      title={`${comment.content}`}
-                      hashtags={["校長への感謝"]}
-                      url={`https://www.youtube.com/watch?v=${videoId}`}
-                    >
-                      <div
-                        className="text-white font-bold rounded-full mr-5 bg-black  py-1 px-2"
-                      >
-                        \uD835\uDD4F
-                      </div>
-                    </TwitterShareButton>
                     {user && comment.user && user.id === comment.user.id && (
                       <button
                         className="p-2 bg-red-500 rounded-md text-white font-bold"
