@@ -47,7 +47,7 @@ const Sidebar = () => {
                             <li
                                 key={index}
                                 className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
-                        ${menu.gap ? 'mt-9' : 'mt-2'} ${
+                                ${
                                     index === 0 && 'bg-gray-200 dark:bg-gray-700'
                                 }`}
                             >
