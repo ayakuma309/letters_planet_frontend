@@ -80,23 +80,6 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
             <div key={comment.id}>
               <div className="bg-white shadow-md rounded p-4 mb-4 w-1/2 mt-10">
                 <div className="mb-4">
-                  <div className="flex items-center mb-2">
-                    <Link href={`/profile/${comment.userId}`}>
-                      <img
-                        src={comment.user.profile?.profileImageUrl}
-                        className="w-10 h-10 rounded-full mr-2"
-                        alt="User Avatar"
-                      />
-                    </Link>
-                    <div>
-                      <h2 className="font-semibold text-md">
-                        {comment.user.username}
-                      </h2>
-                      <p className="text-gray-500 text-sm">
-                        {new Date(comment.createdAt).toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
                   <p className="text-gray-700 break-all">
                   <TwitterTweetEmbed
                     tweetId={`${comment.content}`}

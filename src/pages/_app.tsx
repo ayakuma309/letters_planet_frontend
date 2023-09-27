@@ -3,8 +3,6 @@ import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-
-import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/context/auth";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
@@ -12,6 +10,7 @@ import type { AppProps } from "next/app";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import SeoSetting from "@/components/SeoSetting";
+import Layout from "@/components/common/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -46,8 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
           }}
         />
-        <div>
-          <Navbar />
+        <Layout>
           <Component {...pageProps} />
           <ToastContainer
             position="top-center"
@@ -61,7 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
             pauseOnHover={false}
             theme="light"
           />
-        </div>
+        </Layout>
       </AuthProvider>
     </>
   );

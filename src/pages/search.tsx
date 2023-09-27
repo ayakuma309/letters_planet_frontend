@@ -63,7 +63,7 @@ const Search = ({ videos }: any) => {
 
 export default Search;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const response = await youtube.get("/search", {
       params: {
