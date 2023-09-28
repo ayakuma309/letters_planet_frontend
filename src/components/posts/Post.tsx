@@ -39,7 +39,6 @@ const Post: React.FC<Props> = ({ post, onDelete }) => {
             />
           </Link>
           <p className="break-words">{post.title}</p>
-          <p className="text-gray-700">{post.description}</p>
           <div className="flex justify-between mt-2">
             {/* タグ情報を表示 */}
             {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
