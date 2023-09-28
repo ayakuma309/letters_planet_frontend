@@ -13,8 +13,8 @@ const Sidebar = () => {
     const { user, logout } = useAuth();
 
     const Menus = [
-        { title: 'Dashboard', path: '/dashboard', src: <AiFillPieChart /> },
-        { title: 'Course', path: '/course', src: <SiFuturelearn /> },
+        { title: 'youtube', path: '/posts_page', src: <AiFillPieChart /> },
+        { title: 'random', path: '/random_page', src: <SiFuturelearn /> },
         { title: 'Profile', path: '/profile', src: <CgProfile /> },
     ]
 
@@ -23,7 +23,7 @@ const Sidebar = () => {
             <div
                 className={`${
                     open ? 'w-72' : 'w-20'
-                } hidden sm:block relative h-screen duration-300 bg-gray-100 p-5 dark:bg-slate-800`}
+                } hidden sm:block relative h-screen duration-300 bg-gray-100 p-5 dark:bg-slate-800 shadow-lg`}
             >
                 <BsArrowLeftCircle
                     className={`${
