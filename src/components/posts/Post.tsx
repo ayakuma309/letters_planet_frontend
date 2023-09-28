@@ -28,8 +28,8 @@ const Post: React.FC<Props> = ({ post, onDelete }) => {
     }
   };
   return (
-    <div className="md:w-1/2 p-3">
-      <div className="bg-white shadow-md rounded p-4 mb-4">
+    <div className="md:w-1/2 p-2">
+      <div className="bg-white shadow-md rounded p-5 mb-4">
         <div className="mb-4">
           <Link href={`/posts/${post.id}`}>
             <img
