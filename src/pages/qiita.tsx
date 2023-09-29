@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import useSWR from "swr";
+import { QiitaItem } from '@/types/qiitaTypes';
 
 
 function fetcher(url: string) {
@@ -31,7 +32,7 @@ const qiita = () => {
     {data && (
       <div>
         <ul>
-          {data.map((item) => (
+          {data.map((item: QiitaItem) => (
             <li key={item.id}>
               <a href={item.url} target="_blank" rel="noopener noreferrer">
                 {item.title}
