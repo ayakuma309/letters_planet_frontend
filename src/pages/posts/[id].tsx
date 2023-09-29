@@ -63,6 +63,8 @@ const PostDetail = ({ post, comments }: Props) => {
           </div>
         </div>
       </div>
+
+      {/* tweet情報の表示 */}
       {user && (
         <CommentForm
           postId={post.id}

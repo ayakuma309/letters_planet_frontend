@@ -28,8 +28,8 @@ const Post: React.FC<Props> = ({ post, onDelete }) => {
     }
   };
   return (
-    <div className="md:w-1/2 p-3">
-      <div className="bg-white shadow-md rounded p-4 mb-4">
+    <div className="md:w-1/2 p-2">
+      <div className="bg-white shadow-md rounded p-5 mb-4">
         <div className="mb-4">
           <Link href={`/posts/${post.id}`}>
             <img
@@ -39,7 +39,6 @@ const Post: React.FC<Props> = ({ post, onDelete }) => {
             />
           </Link>
           <p className="break-words">{post.title}</p>
-          <p className="text-gray-700">{post.description}</p>
           <div className="flex justify-between mt-2">
             {/* タグ情報を表示 */}
             {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}

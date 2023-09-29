@@ -11,7 +11,7 @@ const TagList: React.FC<Props> = ({ tags }) => {
       {tags.map((tag, index) => (
         <span
           key={index}
-          className="bg-gray-200 text-gray-800 px-1  rounded-md text-xs mr-2 flex items-center"
+          className="bg-gray-200 text-gray-800 p-2  rounded-md text-xs mr-2 flex items-center"
         >
           {tag.name}
         </span>
