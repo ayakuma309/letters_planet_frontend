@@ -1,5 +1,5 @@
 // アプリ内で利用するためのQiita記事 型定義
-export type QiitaItem = Pick<
+export type QiitaItemsProps = Pick<
   QiitaItemResponse,
   "id" | "title" | "likes_count" | "user"| "tags" | "url"
 >; // Pick で利用したいプロパティのみを抽出

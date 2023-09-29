@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useSWR from "swr";
-import { QiitaItem } from '@/types/qiitaTypes';
+import SearchForm from '@/components/qiita/SearchForm';
+import QiitaList from '@/components/qiita/QiitaList';
 
 
 function fetcher(url: string) {
@@ -15,34 +16,16 @@ const qiita = () => {
     fetcher
   );
 
+  const handleSearch = (newQuery: string) => {
+    setQuery(newQuery);
+  };
 
   return (
-    <div>
-    <h1>Qiita記事一覧</h1>
-    <form>
-      <input
-        type="text"
-        placeholder="検索クエリを入力"
-        value={query}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-      />
-      <button type="submit">検索</button>
-    </form>
-    {error && <div>データの読み込み中にエラーが発生しました。</div>}
-    {data && (
-      <div>
-        <ul>
-          {data.map((item: QiitaItem) => (
-            <li key={item.id}>
-              <a href={item.url} target="_blank" rel="noopener noreferrer">
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </div>
+    <>
+      <h1>Qiita記事一覧</h1>
+      <SearchForm onSearch={handleSearch} />
+      <QiitaList data={data} error={error} />
+    </>
   )
 }
 
