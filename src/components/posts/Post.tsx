@@ -8,10 +8,9 @@ import { toast } from "react-toastify";
 
 type Props = {
   post: PostType;
-  onDelete: (postId: number) => void;
 };
 
-const Post: React.FC<Props> = ({ post, onDelete }) => {
+const Post: React.FC<Props> = ({ post }) => {
   const { user } = useAuth();
 
   const handleDeletePost = async () => {
@@ -20,13 +19,12 @@ const Post: React.FC<Props> = ({ post, onDelete }) => {
     const id = post.id;
     try {
       await apiClient.delete(`/posts/post/${id}`);
-      onDelete(id);
-      window.location.reload();
       toast.success("投稿を削除しました");
     } catch (err) {
       toast.error("投稿の削除に失敗しました");
     }
   };
+  
   return (
     <div className="md:w-1/2 p-2">
       <div className="bg-white shadow-md rounded p-5 mb-4">

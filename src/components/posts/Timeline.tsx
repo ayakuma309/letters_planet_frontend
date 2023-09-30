@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useState } from "react";
 import Post from "./Post";
 import apiClient from "@/lib/apiClient";
 import { PostType } from "@/types/types";
 import tagOptions from "@/json/tag.json";
+import useSWR from 'swr';
 
 interface OptionType {
   value: string;
@@ -10,38 +11,20 @@ interface OptionType {
 }
 
 const Timeline = () => {
+  const { data: latestPosts, error } = useSWR('/posts/get_latest_posts', (url) =>
+    apiClient.get(url).then((res) => res.data)
+  );
   //最近の投稿を取得
-  const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<PostType[]>([]);
-
-  //最近の投稿を取得
-  useEffect(() => {
-    const fetchLatestPosts = async () => {
-      try {
-        const res = await apiClient.get("/posts/get_latest_posts");
-        setLatestPosts(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchLatestPosts();
-  }, []);
 
   //タグ検索
   const handleSearch = (tag: OptionType) => {
     setSearchTerm(tag.label);
     const results = latestPosts.filter(
-      (post) => post.tags?.some((tag) => tag.name === searchTerm),
+      (post: PostType) => post.tags?.some((tag) => tag.name === searchTerm),
     );
-    setSearchResults(results);
-  };
-
-  //投稿の削除
-  const handleDeletePost = (postId: number) => {
-    setLatestPosts((prevPosts) =>
-      prevPosts.filter((post) => post.id !== postId),
-    );
+    setSearchResults(results || []);
   };
 
   return (
@@ -61,21 +44,15 @@ const Timeline = () => {
           </div>
           <div className="flex flex-wrap justify-between">
             {/* 検索結果を表示 */}
-            {searchResults.length > 0
-              ? searchResults.map((post: PostType) => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    onDelete={(postId) => handleDeletePost(postId)}
-                  />
-                ))
-              : latestPosts.map((post: PostType) => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    onDelete={(postId) => handleDeletePost(postId)}
-                  />
-                ))}
+            {error && <div>データの読み込み中にエラーが発生しました。</div>}
+            <Suspense fallback={<div>Loading...</div>}>
+              {latestPosts && latestPosts.map((post: PostType) => (
+                <Post key={post.id} post={post} />
+              ))}
+            </Suspense>
+            {searchResults.length > 0 && searchResults.map((post: PostType) => (
+              <Post key={post.id} post={post} />
+            ))}
           </div>
         </main>
       </div>
