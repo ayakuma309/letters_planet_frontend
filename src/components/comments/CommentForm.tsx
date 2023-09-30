@@ -11,9 +11,10 @@ interface CommentProps {
 }
 
 const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
+  const { user } = useAuth();
+
   const [commentText, setCommentText] = useState("");
   const [latestComments, setLatestComments] = useState<CommentType[]>(comments);
-  const { user } = useAuth();
 
   // コメントの投稿
   const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,24 +55,23 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
 
   return (
     <div className="mt-10">
-      <p className="font-bold my-1">
-        動画と一緒にメッセージが送れます
-      </p>
-      <form onSubmit={handleSubmitComment}>
-        <input
-          className="p-4 rounded-md w-1/2"
-          type="text"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-          placeholder="この動画について"
-        />
-        <button
-          type="submit"
-          className="p-4 bg-orange-500 rounded-md text-white font-bold"
-        >
-          投稿する
-        </button>
-      </form>
+      {user && (
+        <form onSubmit={handleSubmitComment}>
+          <input
+            className="p-4 rounded-md w-1/2"
+            type="text"
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            placeholder="この動画について"
+          />
+          <button
+            type="submit"
+            className="p-4 bg-orange-500 rounded-md text-white font-bold"
+          >
+            投稿する
+          </button>
+        </form>
+      )}
       <div className="border-b py-2">
         {latestComments &&
           latestComments.map((comment) => (

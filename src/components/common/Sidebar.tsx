@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { useAuth } from "@/context/auth";
 
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { AiFillPieChart } from 'react-icons/ai'
-import { SiFuturelearn } from 'react-icons/si'
-import { SiOpenaccess } from 'react-icons/si'
-import { CgProfile } from 'react-icons/cg'
+import { ImYoutube2 } from 'react-icons/im'
+import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
+import { IoMdLogIn } from 'react-icons/io'
+import { IoMdLogOut } from 'react-icons/io'
+
+import { SiQiita } from 'react-icons/si'
+import { FaSearch } from 'react-icons/fa'
 import Link from 'next/link'
 
 const Sidebar = () => {
@@ -13,10 +16,10 @@ const Sidebar = () => {
     const { user, logout } = useAuth();
 
     const Menus = [
-        { title: 'youtube', path: '/posts_page', src: <AiFillPieChart /> },
-        { title: 'random', path: '/random_page', src: <SiFuturelearn /> },
-        { title: 'Qiita', path: '/qiitas', src: <CgProfile /> },
-        { title: 'Qiita検索', path: '/qiita_search', src: <CgProfile /> },
+        { title: 'youtube', path: '/posts_page', src: <ImYoutube2 /> },
+        { title: 'random', path: '/random_page', src: <GiPerspectiveDiceSixFacesRandom /> },
+        { title: 'Qiita', path: '/qiitas', src: <SiQiita /> },
+        { title: 'Qiita検索', path: '/qiita_search', src: <FaSearch/> },
     ]
 
     return (
@@ -68,7 +71,7 @@ const Sidebar = () => {
                     <li
                         onClick={logout}
                         className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}>
-                        <span className='text-2xl'><SiOpenaccess /></span>
+                        <span className='text-2xl'><IoMdLogOut /></span>
                         <span
                             className={`${
                                 !open && 'hidden'
@@ -80,7 +83,7 @@ const Sidebar = () => {
                 ) : (
                     <Link href={`/signup`}>
                         <li className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}>
-                            <span className='text-2xl'><SiOpenaccess /></span>
+                            <span className='text-2xl'><IoMdLogIn /></span>
                             <span
                                 className={`${
                                     !open && 'hidden'

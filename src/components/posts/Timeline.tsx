@@ -14,15 +14,14 @@ const Timeline = () => {
   const { data: latestPosts, error } = useSWR('/posts/get_latest_posts', (url) =>
     apiClient.get(url).then((res) => res.data)
   );
-  //最近の投稿を取得
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState<PostType[]>([]);
 
+  //最近の投稿を取得
+  const [searchResults, setSearchResults] = useState<PostType[]>([]);
   //タグ検索
   const handleSearch = (tag: OptionType) => {
-    setSearchTerm(tag.label);
+    const newSearchTerm = tag.label;
     const results = latestPosts.filter(
-      (post: PostType) => post.tags?.some((tag) => tag.name === searchTerm),
+      (post: PostType) => post.tags?.some((tag) => tag.name === newSearchTerm),
     );
     setSearchResults(results || []);
   };
@@ -45,14 +44,15 @@ const Timeline = () => {
           <div className="flex flex-wrap justify-between">
             {/* 検索結果を表示 */}
             {error && <div>データの読み込み中にエラーが発生しました。</div>}
-            <Suspense fallback={<div>Loading...</div>}>
-              {latestPosts && latestPosts.map((post: PostType) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </Suspense>
-            {searchResults.length > 0 && searchResults.map((post: PostType) => (
+            {searchResults.length > 0 ? searchResults.map((post: PostType) => (
               <Post key={post.id} post={post} />
-            ))}
+            )):(
+              <Suspense fallback={<div>Loading...</div>}>
+                {latestPosts &&  latestPosts.length > 0 && latestPosts.map((post: PostType) => (
+                  <Post key={post.id} post={post} />
+                ))}
+              </Suspense>
+            )}
           </div>
         </main>
       </div>
