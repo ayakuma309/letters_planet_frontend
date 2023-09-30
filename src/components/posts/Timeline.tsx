@@ -3,8 +3,6 @@ import Post from "./Post";
 import apiClient from "@/lib/apiClient";
 import { PostType } from "@/types/types";
 import tagOptions from "@/json/tag.json";
-// import Link from 'next/link';
-// import { useAuth } from '@/context/auth';
 
 interface OptionType {
   value: string;
@@ -16,9 +14,6 @@ const Timeline = () => {
   const [latestPosts, setLatestPosts] = useState<PostType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<PostType[]>([]);
-
-  // ログイン状態を取得
-  // const { user } = useAuth();
 
   //最近の投稿を取得
   useEffect(() => {
