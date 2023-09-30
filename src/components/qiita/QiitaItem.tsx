@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/auth'
 import apiClient from '@/lib/apiClient'
 import { QiitaItemsProps } from '@/types/qiitaTypes'
 import { useRouter } from 'next/router'
@@ -9,6 +10,7 @@ type Props = {
 }
 
 const QiitaItem: React.FC<Props> = ({item}) => {
+  const user = useAuth();
   const router = useRouter();
 
   // Qiita記事をDBに保存する
@@ -59,13 +61,15 @@ const QiitaItem: React.FC<Props> = ({item}) => {
           />
           <p className="text-gray-700">{item.user.name}</p>
         </div>
-        <button
-          type="submit"
-          className="mt-2 bg-gray-700 hover:bg-green-800 duration-200 text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg block"
-          onClick={handleSubmitQiita}
-        >
-          保存
-        </button>
+        {user && (
+          <button
+            type="submit"
+            className="mt-2 bg-gray-700 hover:bg-green-800 duration-200 text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg block"
+            onClick={handleSubmitQiita}
+          >
+            保存
+          </button>
+        )}
       </div>
     </div>
   )
