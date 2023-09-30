@@ -27,6 +27,7 @@ const qiitas = () => {
               tags={item.tags}
               profileImageUrl={item.profileImageUrl}
               username={item.username}
+              author={item.author}
             />
           ))}
         </div>
