@@ -8,11 +8,9 @@ function QiitaList({ data, error }: { data: QiitaItemsProps[] | null, error: any
       {error && <div>データの読み込み中にエラーが発生しました。</div>}
       {data && (
         <div>
-          <ul>
-            {data.map((item: QiitaItemsProps) => (
-              <QiitaItem key={item.id} item={item} />
-            ))}
-          </ul>
+          {data.map((item: QiitaItemsProps) => (
+            <QiitaItem key={item.id} item={item} />
+          ))}
         </div>
       )}
     </div>
