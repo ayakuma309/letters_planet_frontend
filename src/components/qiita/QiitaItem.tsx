@@ -26,7 +26,7 @@ const QiitaItem: React.FC<Props> = ({item}) => {
         profileImageUrl: item.user.profile_image_url,
         tags: qiitaTagNames,
       });
-      router.push("/qiita");
+      router.push("/qiitas");
       toast.success("投稿が完了しました");
     } catch (err) {
       toast.error("投稿に失敗しました");

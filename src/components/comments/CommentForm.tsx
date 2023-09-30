@@ -1,10 +1,8 @@
 import React, {  useState } from "react";
 import apiClient from "@/lib/apiClient";
 import { CommentType } from "@/types/types";
-import {  TwitterShareButton } from "react-share";
 import { useAuth } from "@/context/auth";
 import { toast } from "react-toastify";
-import Link from "next/link";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 
 interface CommentProps {

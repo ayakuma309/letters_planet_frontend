@@ -15,7 +15,8 @@ const Sidebar = () => {
     const Menus = [
         { title: 'youtube', path: '/posts_page', src: <AiFillPieChart /> },
         { title: 'random', path: '/random_page', src: <SiFuturelearn /> },
-        { title: 'Qiita', path: '/qiita', src: <CgProfile /> },
+        { title: 'Qiita', path: '/qiitas', src: <CgProfile /> },
+        { title: 'Qiita検索', path: '/qiita_search', src: <CgProfile /> },
     ]
 
     return (

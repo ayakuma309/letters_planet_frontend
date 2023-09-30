@@ -4,6 +4,20 @@ export type QiitaItemsProps = Pick<
   "id" | "title" |  "user"| "tags" | "url"
 >; // Pick で利用したいプロパティのみを抽出
 
+export interface  QiitaArticleProps {
+  id: number;
+  title: string;
+  url: string;
+  username: string;
+  profileImageUrl: string;
+  tags: {
+    name: string;
+  }[];
+  author: {
+    id: number;
+  };
+};
+
 // Qiita Api レスポンスの型定義
 export interface QiitaItemResponse {
   rendered_body: string;
