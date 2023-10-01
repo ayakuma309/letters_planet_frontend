@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Select from "react-select";
-import tagOptions from "@/json/tag.json";
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import tagOptions from '@/json/tag.json';
 
 interface OptionType {
   value: string;
@@ -28,7 +28,7 @@ const TagSelect: React.FC<TagSelectProps> = ({ onChange, value }) => {
         setSelectedTags(selectedTags as OptionType[]);
         onChange(selectedTags as OptionType[]);
       }}
-      placeholder="タグを選択してください"
+      placeholder='タグを選択してください'
     />
   );
 };

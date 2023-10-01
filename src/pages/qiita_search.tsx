@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import useSWR from "swr";
+import React, { useState } from 'react';
+import useSWR from 'swr';
 import SearchForm from '@/components/qiita/SearchForm';
 import QiitaList from '@/components/qiita/QiitaList';
-
 
 function fetcher(url: string) {
   return fetch(url).then((res) => res.json());
@@ -27,7 +26,7 @@ const qiita_search = () => {
       <SearchForm onSearch={handleSearch} />
       <QiitaList data={data} error={error} />
     </>
-  )
-}
+  );
+};
 
 export default qiita_search;

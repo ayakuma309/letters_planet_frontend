@@ -1,10 +1,10 @@
 // アプリ内で利用するためのQiita記事 型定義
 export type QiitaItemsProps = Pick<
   QiitaItemResponse,
-  "id" | "title" |  "user"| "tags" | "url"
+  'id' | 'title' | 'user' | 'tags' | 'url'
 >; // Pick で利用したいプロパティのみを抽出
 
-export interface  QiitaArticleProps {
+export interface QiitaArticleProps {
   id: number;
   title: string;
   url: string;
@@ -16,7 +16,7 @@ export interface  QiitaArticleProps {
   author: {
     id: number;
   };
-};
+}
 
 // Qiita Api レスポンスの型定義
 export interface QiitaItemResponse {
@@ -41,7 +41,7 @@ export interface QiitaItemResponse {
     {
       name: string;
       versions: string[];
-    }
+    },
   ];
   title: string;
   updated_at: string;

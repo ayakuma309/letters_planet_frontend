@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { PostType } from "@/types/types";
-import apiClient from "@/lib/apiClient";
-import RandomPost from "./RandomPost";
-import Link from "next/link";
-import { ThreeDots } from "react-loader-spinner";
+import React, { useEffect, useState } from 'react';
+import { PostType } from '@/types/types';
+import apiClient from '@/lib/apiClient';
+import RandomPost from './RandomPost';
+import Link from 'next/link';
+import { ThreeDots } from 'react-loader-spinner';
 
 const RandomPosts = () => {
   const [randomPosts, setRandomPosts] = useState<PostType[]>([]); // ランダムな3つの投稿
@@ -13,7 +13,7 @@ const RandomPosts = () => {
     const fetchLatestPosts = async () => {
       setLoading(true);
       try {
-        const res = await apiClient.get("/posts/get_latest_posts");
+        const res = await apiClient.get('/posts/get_latest_posts');
 
         const randomIndices = getRandomIndices(res.data.length, 3);
         const randomPosts = randomIndices.map((index) => res.data[index]);
@@ -38,36 +38,37 @@ const RandomPosts = () => {
       {loading ? (
         <div>
           <ThreeDots
-            height="80"
-            width="80"
-            radius="9"
-            color="#fcede6"
-            ariaLabel="three-dots-loading"
+            height='80'
+            width='80'
+            radius='9'
+            color='#fcede6'
+            ariaLabel='three-dots-loading'
             wrapperStyle={{}}
             visible={true}
           />
         </div>
       ) : (
-        <div className="flex flex-wrap  my-10 justify-center">
+        <div className='flex flex-wrap  my-10 justify-center'>
           <div>
-            <p className="text-3xl font-bold">
+            <p className='text-3xl font-bold'>
               あなたは最高の動画を受け取りました
             </p>
-            <p className="my-3">
+            <p className='my-3'>
               詳細ページでメッセージが送れます
               <br />
               (⚠️ログインしてないとメッセージは送れません)
             </p>
           </div>
-          <div className="flex flex-wrap my-10 justify-center">
-            {randomPosts && randomPosts.map((post: PostType) => (
-              <RandomPost key={post.id} post={post} />
-            ))}
+          <div className='flex flex-wrap my-10 justify-center'>
+            {randomPosts &&
+              randomPosts.map((post: PostType) => (
+                <RandomPost key={post.id} post={post} />
+              ))}
           </div>
         </div>
       )}
       <Link href={`/posts_page`}>
-        <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+        <button className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded'>
           一覧へ
         </button>
       </Link>

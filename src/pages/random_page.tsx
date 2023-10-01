@@ -1,5 +1,5 @@
-import RandomPosts from "@/components/random/RandomPosts";
-import React, { Suspense } from "react";
+import RandomPosts from '@/components/random/RandomPosts';
+import React, { Suspense } from 'react';
 
 const random_page = () => {
   return (

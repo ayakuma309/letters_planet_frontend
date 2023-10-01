@@ -1,43 +1,42 @@
-import Script from "next/script";
-import * as gtag from "../lib/gtag";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import Script from 'next/script';
+import * as gtag from '../lib/gtag';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import { AuthProvider } from "@/context/auth";
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import { AuthProvider } from '@/context/auth';
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
 
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import SeoSetting from "@/components/SeoSetting";
-import Layout from "@/components/common/Layout";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import SeoSetting from '@/components/SeoSetting';
+import Layout from '@/components/common/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
-
   const router = useRouter();
-    useEffect(() => {
-        const handleRouterChange = (url: any) => {
-        gtag.pageview(url);
-        };
-        router.events.on("routeChangeComplete", handleRouterChange);
-        return () => {
-        router.events.off("routeChangeComplete", handleRouterChange);
-        };
-    }, [router.events]);
+  useEffect(() => {
+    const handleRouterChange = (url: any) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouterChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouterChange);
+    };
+  }, [router.events]);
 
   return (
     <>
       <SeoSetting />
       <AuthProvider>
         <Script
-          strategy="afterInteractive"
+          strategy='afterInteractive'
           src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_MEASUREMENT_ID}`}
         />
         <Script
-          id="gtag-init"
-          strategy="afterInteractive"
+          id='gtag-init'
+          strategy='afterInteractive'
           dangerouslySetInnerHTML={{
-          __html: `
+            __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
@@ -48,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
           <ToastContainer
-            position="top-center"
+            position='top-center'
             autoClose={3000}
             hideProgressBar={false}
             newestOnTop
@@ -57,7 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
             pauseOnFocusLoss={false}
             draggable={false}
             pauseOnHover={false}
-            theme="light"
+            theme='light'
           />
         </Layout>
       </AuthProvider>

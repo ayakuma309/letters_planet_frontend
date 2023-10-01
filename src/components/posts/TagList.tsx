@@ -1,5 +1,5 @@
-import React from "react";
-import { TagType } from "@/types/types";
+import React from 'react';
+import { TagType } from '@/types/types';
 
 type Props = {
   tags: TagType[];
@@ -7,11 +7,11 @@ type Props = {
 
 const TagList: React.FC<Props> = ({ tags }) => {
   return (
-    <div className="flex flex-wrap">
+    <div className='flex flex-wrap'>
       {tags.map((tag, index) => (
         <span
           key={index}
-          className="bg-gray-200 text-gray-800 p-2  rounded-md text-xs mr-2 flex items-center"
+          className='bg-gray-200 text-gray-800 p-2  rounded-md text-xs mr-2 flex items-center'
         >
           {tag.name}
         </span>
