@@ -9,18 +9,21 @@ function SearchForm({ onSearch }: { onSearch: (query: string) => void }) {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="mt-12 mb-6">
+    <form onSubmit={handleFormSubmit} className='mt-12 mb-6'>
       <input
-        type="text"
-        placeholder="例: React"
+        type='text'
+        placeholder='例: React'
         value={query}
-        className="shadow appearance-none border rounded w-10/12 py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+        className='shadow appearance-none border rounded w-10/12 py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setQuery(e.target.value)
+        }
       />
       <button
-        type="submit"
-        className="text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          検索
+        type='submit'
+        className='text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+      >
+        検索
       </button>
     </form>
   );

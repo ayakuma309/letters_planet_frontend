@@ -1,5 +1,5 @@
-import React from "react";
-import Timeline from "@/components/posts/Timeline";
+import React from 'react';
+import Timeline from '@/components/posts/Timeline';
 
 const posts_page = () => {
   return (

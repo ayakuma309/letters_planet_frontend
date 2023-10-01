@@ -2,7 +2,13 @@ import React from 'react';
 import { QiitaItemsProps } from '@/types/qiitaTypes';
 import QiitaItem from '@/components/qiita/QiitaItem';
 
-function QiitaList({ data, error }: { data: QiitaItemsProps[] | null, error: any }) {
+function QiitaList({
+  data,
+  error,
+}: {
+  data: QiitaItemsProps[] | null;
+  error: any;
+}) {
   return (
     <div>
       {error && <div>データの読み込み中にエラーが発生しました。</div>}

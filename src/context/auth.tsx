@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
-import apiClient from "@/lib/apiClient";
-import { toast } from "react-toastify";
+import React, { useContext, useEffect, useState } from 'react';
+import { parseCookies, setCookie, destroyCookie } from 'nookies';
+import apiClient from '@/lib/apiClient';
+import { toast } from 'react-toastify';
 
 interface AuthContextType {
   user: null | {
@@ -36,10 +36,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const token = cookies.auth_token;
     if (token) {
       //tokenをheaderにセット
-      apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
+      apiClient.defaults.headers['Authorization'] = `Bearer ${token}`;
 
       apiClient
-        .get("/users/find")
+        .get('/users/find')
         .then((res) => {
           setUser(res.data.user);
         })
@@ -51,29 +51,29 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   //login
   const login = async (token: string) => {
-    setCookie(null, "auth_token", token, {
+    setCookie(null, 'auth_token', token, {
       maxAge: 30 * 24 * 60 * 60,
-      path: "/",
+      path: '/',
     });
-    apiClient.defaults.headers["Authorization"] = `Bearer ${token}`;
+    apiClient.defaults.headers['Authorization'] = `Bearer ${token}`;
 
     try {
-      const res = await apiClient.get("/users/find");
+      const res = await apiClient.get('/users/find');
       setUser(res.data.user);
-      toast.success("ログインしました");
+      toast.success('ログインしました');
     } catch (err) {
-      toast.error("ログインに失敗しました");
+      toast.error('ログインに失敗しました');
     }
   };
 
   //logout
   const logout = () => {
-    const confirmed = window.confirm("ログアウトしますか？");
+    const confirmed = window.confirm('ログアウトしますか？');
     if (confirmed) {
-      destroyCookie(null, "auth_token");
-      delete apiClient.defaults.headers["Authorization"];
+      destroyCookie(null, 'auth_token');
+      delete apiClient.defaults.headers['Authorization'];
       setUser(null);
-      toast.success("ログアウトしました");
+      toast.success('ログアウトしました');
     }
   };
 
