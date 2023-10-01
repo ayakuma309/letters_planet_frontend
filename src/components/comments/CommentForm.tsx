@@ -78,9 +78,9 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
             <div key={comment.id}>
               <div className='bg-white shadow-md rounded p-4 mb-4 w-1/2 mt-10'>
                 <div className='mb-4'>
-                  <p className='text-gray-700 break-all'>
+                  <div className='text-gray-700 break-all'>
                     <TwitterTweetEmbed tweetId={`${comment.content}`} />
-                  </p>
+                  </div>
                   <div className='flex justify-end mt-2 mx-1'>
                     {user && comment.user && user.id === comment.user.id && (
                       <button
