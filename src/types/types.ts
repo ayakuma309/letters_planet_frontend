@@ -39,3 +39,10 @@ export interface CommentType {
   userId: number;
   user: UserType;
 }
+
+// modal
+export type ModalType = {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
