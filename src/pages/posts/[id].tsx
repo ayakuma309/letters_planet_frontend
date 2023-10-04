@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import apiClient from '@/lib/apiClient';
 import { CommentType, PostType } from '@/types/types';
 import { GetServerSideProps } from 'next';
@@ -6,6 +6,10 @@ import Youtube from 'react-youtube';
 import TagList from '@/components/posts/TagList';
 import CommentForm from '@/components/comments/CommentForm';
 import { TwitterShareButton } from 'react-share';
+
+import NewBookmarkModal from '@/components/modals/NewBookmarkModal';
+import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
+import Bookmarks from '@/components/Bookmarks/Bookmarks';
 
 type Props = {
   post: PostType;
@@ -16,15 +20,18 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
   const postId = id;
   try {
-    const [postResponse, commentsResponse] = await Promise.all([
-      apiClient.get(`/posts/post/${id}`),
-      apiClient.get(`/comments/comments/${postId}`),
-    ]);
+    const [postResponse, commentsResponse, bookmarksResponse] =
+      await Promise.all([
+        apiClient.get(`/posts/post/${id}`),
+        apiClient.get(`/comments/comments/${postId}`),
+        apiClient.get(`/bookmarks/bookmarks/${postId}`),
+      ]);
 
     return {
       props: {
         post: postResponse.data,
         comments: commentsResponse.data,
+        bookmarks: bookmarksResponse.data,
       },
     };
   } catch (err) {
@@ -36,6 +43,21 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 const PostDetail = ({ post, comments }: Props) => {
+  const newBookmarkModal = useNewBookmarkModal();
+  const [YTPlayer, setYTPlayer] = useState<YT.Player>();
+  const [time, setTime] = useState<number>();
+  const makeYTPlayer = (e: { target: YT.Player }) => {
+    setYTPlayer(e.target);
+  };
+
+  const handleMakeTimestamp = () => {
+    //再生を一時停止
+    YTPlayer?.pauseVideo();
+    //再生時間を取得
+    setTime(YTPlayer?.getCurrentTime());
+    newBookmarkModal.onOpen();
+  };
+
   return (
     <div className='container mx-auto px-4 py-8'>
       <div className='bg-white shadow-md rounded p-4 mb-4'>
@@ -43,6 +65,7 @@ const PostDetail = ({ post, comments }: Props) => {
           <Youtube
             videoId={post.videoId}
             className='w-100 h-100 rounded-md  mx-auto'
+            onReady={makeYTPlayer}
           />
           <p className='text-xl font-bold my-2'>{post.title}</p>
           <p className='text-gray-700'>{post.description}</p>
@@ -59,7 +82,14 @@ const PostDetail = ({ post, comments }: Props) => {
           </div>
         </div>
       </div>
-
+      <button
+        className='p-4 bg-orange-500 rounded-md text-white font-bold'
+        onClick={handleMakeTimestamp}
+      >
+        タイムスタンプ作成
+      </button>
+      <NewBookmarkModal postId={post.id} time={time} />
+      <Bookmarks postId={post.id} bookmarks={comments} />
       {/* tweet情報の表示 */}
       <CommentForm postId={post.id} comments={comments} />
     </div>
