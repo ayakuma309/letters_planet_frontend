@@ -82,12 +82,14 @@ const PostDetail = ({ post, comments, bookmarks }: Props) => {
           </div>
         </div>
       </div>
-      <button
-        className='p-4 bg-orange-500 rounded-md text-white font-bold'
-        onClick={handleMakeTimestamp}
-      >
-        タイムスタンプ作成
-      </button>
+      <div className='text-center'>
+        <button
+          className='p-4 bg-orange-500 rounded-md text-white font-bold'
+          onClick={handleMakeTimestamp}
+        >
+          タイムスタンプ作成
+        </button>
+      </div>
       <NewBookmarkModal postId={post.id} time={time} />
       <Bookmarks bookmarks={bookmarks} ytPlayer={YTPlayer} />
       {/* tweet情報の表示 */}
