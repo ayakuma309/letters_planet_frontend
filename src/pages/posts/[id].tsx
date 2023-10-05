@@ -89,7 +89,7 @@ const PostDetail = ({ post, comments, bookmarks }: Props) => {
         タイムスタンプ作成
       </button>
       <NewBookmarkModal postId={post.id} time={time} />
-      <Bookmarks bookmarks={bookmarks} />
+      <Bookmarks bookmarks={bookmarks} ytPlayer={YTPlayer} />
       {/* tweet情報の表示 */}
       <CommentForm postId={post.id} comments={comments} />
     </div>

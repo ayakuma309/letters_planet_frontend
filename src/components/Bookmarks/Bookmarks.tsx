@@ -1,37 +1,47 @@
 import React, { useState } from 'react';
+import apiClient from '@/lib/apiClient';
 import { BookmarkType } from '@/types/types';
+import { toast } from 'react-toastify';
 import { useAuth } from '@/context/auth';
-import useTimeFormatter from '@/hooks/useTimeFormatter';
+import Bookmark from './Bookmark';
 
-interface BookmarkProps {
+interface BookmarksProps {
   bookmarks: BookmarkType[];
+  ytPlayer: YT.Player | undefined;
 }
 
-const Bookmarks: React.FC<BookmarkProps> = ({ bookmarks }) => {
+const Bookmarks: React.FC<BookmarksProps> = ({ bookmarks, ytPlayer }) => {
   const { user } = useAuth();
-  const [latestBookmarks] = useState<BookmarkType[]>(bookmarks);
+  const [latestBookmarks, setLatestBookmarks] =
+    useState<BookmarkType[]>(bookmarks);
+  //削除
+  const handleDeleteBookmark = async (bookmarkId: number) => {
+    const shouldDelete = window.confirm('このコメントを削除しますか？');
+    if (!shouldDelete) return;
+
+    try {
+      await apiClient.delete(`/bookmarks/bookmark/${bookmarkId}`);
+      setLatestBookmarks((prevBookmark) =>
+        prevBookmark.filter((bookmark) => bookmark.id !== bookmarkId)
+      );
+      toast.success('削除しました');
+    } catch (err) {
+      toast.error('削除に失敗しました');
+    }
+  };
 
   return (
     <div className='mt-10'>
       <div className='border-b py-2'>
         {latestBookmarks &&
           latestBookmarks.map((bookmark) => (
-            <div key={bookmark.id}>
-              <div className='bg-white shadow-md rounded p-4 mb-4 w-1/2 mt-10'>
-                <div className='mb-4'>
-                  <div className='text-gray-700 break-all'>
-                    {useTimeFormatter(bookmark.startAt)} : {bookmark.title}
-                  </div>
-                  <div className='flex justify-end mt-2 mx-1'>
-                    {user && bookmark.user && user.id === bookmark.user.id && (
-                      <button className='p-2 bg-red-500 rounded-md text-white font-bold'>
-                        Delete
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Bookmark
+              key={bookmark.id}
+              ytPlayer={ytPlayer}
+              bookmark={bookmark}
+              handleDelete={handleDeleteBookmark}
+              user={user}
+            />
           ))}
       </div>
     </div>
