@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import apiClient from '@/lib/apiClient';
-import { CommentType, PostType } from '@/types/types';
+import { BookmarkType, CommentType, PostType } from '@/types/types';
 import { GetServerSideProps } from 'next';
 import Youtube from 'react-youtube';
 import TagList from '@/components/posts/TagList';
 import CommentForm from '@/components/comments/CommentForm';
 import { TwitterShareButton } from 'react-share';
-
 import NewBookmarkModal from '@/components/modals/NewBookmarkModal';
 import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
 import Bookmarks from '@/components/Bookmarks/Bookmarks';
@@ -14,6 +13,7 @@ import Bookmarks from '@/components/Bookmarks/Bookmarks';
 type Props = {
   post: PostType;
   comments: CommentType[];
+  bookmarks: BookmarkType[];
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-const PostDetail = ({ post, comments }: Props) => {
+const PostDetail = ({ post, comments, bookmarks }: Props) => {
   const newBookmarkModal = useNewBookmarkModal();
   const [YTPlayer, setYTPlayer] = useState<YT.Player>();
   const [time, setTime] = useState<number>();
@@ -89,7 +89,7 @@ const PostDetail = ({ post, comments }: Props) => {
         タイムスタンプ作成
       </button>
       <NewBookmarkModal postId={post.id} time={time} />
-      <Bookmarks postId={post.id} bookmarks={comments} />
+      <Bookmarks bookmarks={bookmarks} />
       {/* tweet情報の表示 */}
       <CommentForm postId={post.id} comments={comments} />
     </div>

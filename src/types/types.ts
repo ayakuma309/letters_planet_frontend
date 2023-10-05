@@ -41,8 +41,17 @@ export interface CommentType {
 }
 
 // modal
-export type ModalType = {
+export interface ModalType {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-};
+}
+
+//bookmarks
+export interface BookmarkType {
+  id: number;
+  user: UserType;
+  postId: number;
+  title: string;
+  startAt: number;
+}
