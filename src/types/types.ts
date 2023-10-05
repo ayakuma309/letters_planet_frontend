@@ -5,6 +5,7 @@ export interface UserType {
   password: string;
   profile: ProfileType;
 }
+export type User = Pick<UserType, 'id' | 'username'>;
 
 export interface ProfileType {
   id: number;
