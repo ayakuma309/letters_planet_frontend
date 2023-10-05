@@ -69,15 +69,14 @@ const Sidebar = () => {
             </Link>
           ))}
         </ul>
-        <ul className='pt-6'>
+        <ul>
           {user ? (
             <>
               <Link href={'/qiita_search'}>
                 <li
-                  onClick={logout}
                   className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}
                 >
-                  <span className='text-2xl'>
+                  <span className='text-xl'>
                     <FaSearch />
                   </span>
                   <span
