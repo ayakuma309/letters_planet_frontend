@@ -9,8 +9,8 @@ import type { AppProps } from 'next/app';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import SeoSetting from '@/components/SeoSetting';
 import Layout from '@/components/common/Layout';
+import SeoSetting from '@/components/common/SeoSetting';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
