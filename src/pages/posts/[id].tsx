@@ -8,7 +8,7 @@ import CommentForm from '@/components/comments/CommentForm';
 import { TwitterShareButton } from 'react-share';
 import NewBookmarkModal from '@/components/modals/NewBookmarkModal';
 import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
-import Bookmarks from '@/components/Bookmarks/Bookmarks';
+import Bookmarks from '@/components/timestamp/Bookmarks';
 
 type Props = {
   post: PostType;
