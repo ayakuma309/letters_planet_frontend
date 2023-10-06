@@ -4,6 +4,7 @@ import { QiitaItemsProps } from '@/types/qiitaTypes';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { toast } from 'react-toastify';
+import { BsBookmark } from 'react-icons/bs';
 
 type Props = {
   item: QiitaItemsProps;
@@ -68,7 +69,7 @@ const QiitaItem: React.FC<Props> = ({ item }) => {
             className='mt-2 bg-gray-700 hover:bg-green-800 duration-200 text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg block'
             onClick={handleSubmitQiita}
           >
-            保存
+            <BsBookmark />
           </button>
         )}
       </div>
