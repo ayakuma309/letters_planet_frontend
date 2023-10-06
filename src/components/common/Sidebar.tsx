@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/context/auth';
 
 import { BsArrowLeftCircle } from 'react-icons/bs';
@@ -6,11 +7,10 @@ import { ImYoutube2 } from 'react-icons/im';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 import { IoMdLogIn } from 'react-icons/io';
 import { IoMdLogOut } from 'react-icons/io';
-
 import { SiQiita } from 'react-icons/si';
 import { FaSearch } from 'react-icons/fa';
-import Link from 'next/link';
-
+import { BiSolidBookAlt } from 'react-icons/bi';
+import { GiArchiveResearch } from 'react-icons/gi';
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -23,6 +23,13 @@ const Sidebar = () => {
       src: <GiPerspectiveDiceSixFacesRandom />,
     },
     { title: 'Qiita', path: '/qiitas', src: <SiQiita /> },
+    { title: 'Book', path: '/books', src: <BiSolidBookAlt /> },
+  ];
+
+  //ログイン後のメニュー
+  const LoginAfterMenus = [
+    { title: 'Qiita', path: '/qiita_search', src: <FaSearch /> },
+    { title: 'Book', path: '/book_search', src: <GiArchiveResearch /> },
   ];
 
   return (
@@ -51,12 +58,7 @@ const Sidebar = () => {
         <ul className='pt-6'>
           {Menus.map((menu, index) => (
             <Link href={menu.path} key={index}>
-              <li
-                className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
-                                ${
-                                  index === 0 && 'bg-gray-200 dark:bg-gray-700'
-                                }`}
-              >
+              <li className='flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'>
                 <span className='text-2xl'>{menu.src}</span>
                 <span
                   className={`${
@@ -72,22 +74,20 @@ const Sidebar = () => {
         <ul>
           {user ? (
             <>
-              <Link href={'/qiita_search'}>
-                <li
-                  className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}
-                >
-                  <span className='text-xl'>
-                    <FaSearch />
-                  </span>
-                  <span
-                    className={`${
-                      !open && 'hidden'
-                    } origin-left duration-300 hover:block`}
-                  >
-                    Qiita検索
-                  </span>
-                </li>
-              </Link>
+              {LoginAfterMenus.map((menu, index) => (
+                <Link href={menu.path} key={index}>
+                  <li className='flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'>
+                    <span className='text-2xl'>{menu.src}</span>
+                    <span
+                      className={`${
+                        !open && 'hidden'
+                      } origin-left duration-300 hover:block`}
+                    >
+                      {menu.title}
+                    </span>
+                  </li>
+                </Link>
+              ))}
               <li
                 onClick={logout}
                 className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}
