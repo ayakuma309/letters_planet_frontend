@@ -16,8 +16,8 @@ const RandomPosts = () => {
         const res = await apiClient.get('/posts/get_latest_posts');
 
         const randomIndices = getRandomIndices(res.data.length, 3);
-        const randomPosts = randomIndices.map((index) => res.data[index]);
-        setRandomPosts(randomPosts);
+        const randoms = randomIndices.map((index) => res.data[index]);
+        setRandomPosts(randoms);
       } catch (err) {
         console.log(err);
       } finally {
@@ -49,16 +49,6 @@ const RandomPosts = () => {
         </div>
       ) : (
         <div className='flex flex-wrap  my-10 justify-center'>
-          <div>
-            <p className='text-3xl font-bold'>
-              あなたは最高の動画を受け取りました
-            </p>
-            <p className='my-3'>
-              詳細ページでメッセージが送れます
-              <br />
-              (⚠️ログインしてないとメッセージは送れません)
-            </p>
-          </div>
           <div className='flex flex-wrap my-10 justify-center'>
             {randomPosts &&
               randomPosts.map((post: PostType) => (
