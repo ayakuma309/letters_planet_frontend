@@ -37,7 +37,7 @@ const BookItem: React.FC<Props> = ({ book }) => {
       });
 
       setSelectedTags([]);
-      router.push('/');
+      router.push('/books');
       toast.success('投稿が完了しました');
     } catch (err) {
       toast.error('投稿に失敗しました');
@@ -45,9 +45,9 @@ const BookItem: React.FC<Props> = ({ book }) => {
   };
   return (
     <div className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'>
-      <p className='text-center font-bold  text-blue-800 mb-4'>
+      <div className='text-center font-bold  text-blue-800 mb-4'>
         {book.image ? <img src={book.image} /> : <div>No Image</div>}
-      </p>
+      </div>
       <div className='flex items-center mt-3 justify-between'>
         <div>{book.description}</div>
       </div>
