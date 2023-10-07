@@ -59,11 +59,13 @@ export interface BookmarkType {
 
 // book一覧
 export interface BooksType {
-  id: string;
+  id: number;
+  bookId: string;
   title: string;
   description: string;
   pageCount: number | null;
   image: string;
+  author: UserType;
   tags: TagType[];
 }
 // google books api から取得した情報のインタフェース
