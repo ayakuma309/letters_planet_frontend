@@ -1,4 +1,4 @@
-import { Book } from '@/pages/api/books';
+import { Book } from '@/types/types';
 import BookItem from './BookItem';
 
 function BookList({ data, error }: { data: Book[] | null; error: any }) {

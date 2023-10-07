@@ -1,15 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-// google books api から取得した情報のインタフェース
-export interface Book {
-  id: string;
-  title: string;
-  description: string;
-  pageCount: number | null;
-  image: string;
-  mainCategory: string;
-  categories: string[];
-}
+import { Book } from '@/types/types';
 
 //Google Books API で書籍を検索する関数
 export default async function handler(
@@ -35,8 +25,6 @@ export async function getData(query: string): Promise<Book[]> {
       description: elem.volumeInfo?.description,
       pageCount: elem?.pageCount,
       image: elem.volumeInfo?.imageLinks?.thumbnail,
-      mainCategory: elem.volumeInfo?.mainCategory,
-      categories: elem.volumeInfo?.categories,
     };
   });
 }

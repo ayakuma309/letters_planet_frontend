@@ -56,3 +56,15 @@ export interface BookmarkType {
   title: string;
   startAt: number;
 }
+
+// book一覧
+export interface BooksType {
+  id: string;
+  title: string;
+  description: string;
+  pageCount: number | null;
+  image: string;
+  tags: TagType[];
+}
+// google books api から取得した情報のインタフェース
+export type Book = Omit<BooksType, 'tags'>;
