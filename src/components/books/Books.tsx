@@ -25,17 +25,6 @@ const Books: React.FC<BookProps> = ({ book }) => {
   };
   return (
     <div className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'>
-      <div className='flex flex-wrap items-center justify-center'>
-        {book.tags.length > 0 &&
-          book.tags.map((tag, index) => (
-            <span
-              key={index}
-              className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
-            >
-              {tag.name}
-            </span>
-          ))}
-      </div>
       <div className='flex flex-col items-center mt-3 justify-center'>
         <img
           className='w-100 h-100 rounded mr-4'
@@ -43,6 +32,17 @@ const Books: React.FC<BookProps> = ({ book }) => {
           src={book.image}
         />
         <p className='text-gray-700'>{book.title}</p>
+        <div className='flex flex-wrap items-center justify-center'>
+          {book.tags.length > 0 &&
+            book.tags.map((tag, index) => (
+              <span
+                key={index}
+                className='inline-block bg-gray-500 text-white rounded-full px-3 py-1 text-sm font-semibold  mr-2'
+              >
+                {tag.name}
+              </span>
+            ))}
+        </div>
         <p className='text-gray-700'>{book.description}</p>
       </div>
       {user && user.id === book.author.id && (
