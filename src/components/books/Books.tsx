@@ -24,15 +24,15 @@ const Books: React.FC<BookProps> = ({ book }) => {
     }
   };
   return (
-    <div className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'>
+    <div className='m-1 py-3 px-8  rounded-lg shadow-lg lg:w-1/4  w-1/3'>
       <div className='flex flex-col items-center mt-3 justify-center'>
         <img
           className='w-100 h-100 rounded mr-4'
           alt='User Avatar'
           src={book.image}
         />
-        <p className='text-gray-700'>{book.title}</p>
-        <div className='flex flex-wrap items-center justify-center'>
+        {/* <p className='text-gray-700'>{book.title}</p> */}
+        {/* <div className='flex flex-wrap items-center justify-center m-2'>
           {book.tags.length > 0 &&
             book.tags.map((tag, index) => (
               <span
@@ -42,12 +42,12 @@ const Books: React.FC<BookProps> = ({ book }) => {
                 {tag.name}
               </span>
             ))}
-        </div>
-        <p className='text-gray-700'>{book.description}</p>
+        </div> */}
+        {/* <p className='text-gray-700'>{book.description}</p> */}
       </div>
       {user && user.id === book.author.id && (
         <button
-          className='p-1 bg-red-500 rounded-md text-white font-bold'
+          className='p-1 rounded-md font-bold text-2xl'
           onClick={() => handleDelete(book.id)}
         >
           <BsFillTrashFill />

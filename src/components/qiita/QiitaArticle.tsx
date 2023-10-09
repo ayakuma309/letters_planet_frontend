@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { QiitaArticleProps } from '@/types/qiitaTypes';
 import { useAuth } from '@/context/auth';
 import apiClient from '@/lib/apiClient';
@@ -28,7 +29,10 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
   };
 
   return (
-    <div className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'>
+    <div
+      className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'
+      style={{ backgroundColor: '#9bd66f' }}
+    >
       <p className='text-center font-bold  text-blue-800 mb-4'>
         <a href={url} target='_blank' rel='noopener noreferrer'>
           {title}
@@ -39,7 +43,7 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
           tags.map((tag, index) => (
             <span
               key={index}
-              className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+              className='inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
             >
               {tag.name}
             </span>
@@ -56,10 +60,10 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
         </div>
         {user && user.id === author.id && (
           <button
-            className='p-1 bg-red-500 rounded-md text-white font-bold'
+            className='p-1 rounded-md font-bold text-2xl'
             onClick={() => handleDeleteQiita(id)}
           >
-            Delete
+            <BsFillTrashFill />
           </button>
         )}
       </div>

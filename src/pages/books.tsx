@@ -13,11 +13,11 @@ const qiitas = () => {
   const { data: get_books, error } = useSWR('/books/get_books', fetcher);
   return (
     <div
-      className={`flex min-h-screen flex-col items-center justify-between p-24`}
+      className={`flex min-h-screen flex-col items-center justify-between p-10`}
     >
       {error && <div>データの読み込み中にエラーが発生しました。</div>}
       {get_books && (
-        <div>
+        <div className='flex flex-wrap justify-center'>
           {get_books.map((book: BooksType) => (
             <Books key={book.id} book={book} />
           ))}
