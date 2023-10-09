@@ -17,7 +17,6 @@ const Books: React.FC<BookProps> = ({ book }) => {
     if (!shouldDelete) return;
     try {
       await apiClient.delete(`/books/book/${id}`);
-      window.location.reload();
       toast.success('投稿を削除しました');
     } catch (err) {
       toast.error('投稿の削除に失敗しました');
