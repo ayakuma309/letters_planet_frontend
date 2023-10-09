@@ -9,6 +9,7 @@ import { TwitterShareButton } from 'react-share';
 import NewBookmarkModal from '@/components/modals/NewBookmarkModal';
 import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
 import Bookmarks from '@/components/timestamp/Bookmarks';
+import { useAuth } from '@/context/auth';
 
 type Props = {
   post: PostType;
@@ -43,6 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 const PostDetail = ({ post, comments, bookmarks }: Props) => {
+  const { user } = useAuth();
   const newBookmarkModal = useNewBookmarkModal();
   const [YTPlayer, setYTPlayer] = useState<YT.Player>();
   const [time, setTime] = useState<number>();
@@ -82,16 +84,22 @@ const PostDetail = ({ post, comments, bookmarks }: Props) => {
           </div>
         </div>
       </div>
-      <div className='text-center'>
-        <button
-          className='p-4 bg-orange-500 rounded-md text-white font-bold'
-          onClick={handleMakeTimestamp}
-        >
-          タイムスタンプ作成
-        </button>
-      </div>
-      <NewBookmarkModal postId={post.id} time={time} />
-      <Bookmarks bookmarks={bookmarks} ytPlayer={YTPlayer} />
+      {user && (
+        <>
+          <div className='text-center'>
+            <button
+              className='p-4 bg-orange-500 rounded-md text-white font-bold'
+              onClick={handleMakeTimestamp}
+            >
+              タイムスタンプ作成
+            </button>
+          </div>
+          <NewBookmarkModal postId={post.id} time={time} />
+        </>
+      )}
+      {bookmarks.length != 0 && (
+        <Bookmarks bookmarks={bookmarks} ytPlayer={YTPlayer} />
+      )}
       {/* tweet情報の表示 */}
       <CommentForm postId={post.id} comments={comments} />
     </div>
