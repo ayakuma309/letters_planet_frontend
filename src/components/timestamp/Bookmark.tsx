@@ -24,7 +24,7 @@ const Bookmark: React.FC<BookmarkProps> = ({
 
   return (
     <>
-      <div className='mb-4 flex items-center justify-center'>
+      <div className='mb-4'>
         <div className='text-gray-700 break-all'>
           <a
             href='#'
