@@ -29,10 +29,7 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
   };
 
   return (
-    <div
-      className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'
-      style={{ backgroundColor: '#9bd66f' }}
-    >
+    <div className='mb-3 py-3 px-8  rounded-lg shadow-lg w-10/12'>
       <p className='text-center font-bold  text-blue-800 mb-4'>
         <a href={url} target='_blank' rel='noopener noreferrer'>
           {title}
