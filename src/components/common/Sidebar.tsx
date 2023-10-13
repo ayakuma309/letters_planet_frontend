@@ -5,7 +5,7 @@ import { useAuth } from '@/context/auth';
 import { BsArrowLeftCircle } from 'react-icons/bs';
 import { ImYoutube2 } from 'react-icons/im';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
-import { IoMdLogIn } from 'react-icons/io';
+// import { IoMdLogIn } from 'react-icons/io';
 import { IoMdLogOut } from 'react-icons/io';
 import { SiQiita } from 'react-icons/si';
 import { FaSearch } from 'react-icons/fa';
@@ -51,7 +51,7 @@ const Sidebar = () => {
               !open && 'scale-0'
             }`}
           >
-            Goal Quest
+            Letters Tube
           </span>
         </div>
 
@@ -72,7 +72,7 @@ const Sidebar = () => {
           ))}
         </ul>
         <ul>
-          {user ? (
+          {user && (
             <>
               {LoginAfterMenus.map((menu, index) => (
                 <Link href={menu.path} key={index}>
@@ -104,23 +104,24 @@ const Sidebar = () => {
                 </span>
               </li>
             </>
-          ) : (
-            <Link href={`/signup`}>
-              <li
-                className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}
-              >
-                <span className='text-2xl'>
-                  <IoMdLogIn />
-                </span>
-                <span
-                  className={`${
-                    !open && 'hidden'
-                  } origin-left duration-300 hover:block`}
-                >
-                  signup
-                </span>
-              </li>
-            </Link>
+            // ) : (
+            //   <Link href={`/signup`}>
+            //     <li
+            //       className={`flex items-center gap-x-4 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700`}
+            //     >
+            //       <span className='text-2xl'>
+            //         <IoMdLogIn />
+            //       </span>
+            //       <span
+            //         className={`${
+            //           !open && 'hidden'
+            //         } origin-left duration-300 hover:block`}
+            //       >
+            //         signup
+            //       </span>
+            //     </li>
+            //   </Link>
+            // )}
           )}
         </ul>
       </div>
