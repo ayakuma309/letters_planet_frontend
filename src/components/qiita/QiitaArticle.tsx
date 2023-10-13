@@ -40,7 +40,8 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
           tags.map((tag, index) => (
             <span
               key={index}
-              className='inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+              className='inline-block bg-gray-100 shadow-lg rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'
+              style={{ backgroundColor: '#9bca77' }}
             >
               {tag.name}
             </span>
