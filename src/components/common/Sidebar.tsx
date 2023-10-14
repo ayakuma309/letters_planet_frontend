@@ -11,6 +11,7 @@ import { SiQiita } from 'react-icons/si';
 import { FaSearch } from 'react-icons/fa';
 import { BiSolidBookAlt } from 'react-icons/bi';
 import { GiArchiveResearch } from 'react-icons/gi';
+import { FaSearchPlus } from 'react-icons/fa';
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -28,8 +29,9 @@ const Sidebar = () => {
 
   //ログイン後のメニュー
   const LoginAfterMenus = [
-    { title: 'Qiita', path: '/qiita_search', src: <FaSearch /> },
-    { title: 'Book', path: '/book_search', src: <GiArchiveResearch /> },
+    { title: 'Youtube検索', path: '/search', src: <FaSearchPlus /> },
+    { title: 'Qiita検索', path: '/qiita_search', src: <FaSearch /> },
+    { title: 'Book検索', path: '/book_search', src: <GiArchiveResearch /> },
   ];
 
   return (
