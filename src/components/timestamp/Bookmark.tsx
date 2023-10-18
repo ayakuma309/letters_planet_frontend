@@ -36,7 +36,7 @@ const Bookmark: React.FC<BookmarkProps> = ({
           </a>
         </div>
         <div className='mt-2 mx-1'>
-          {user && bookmark.user && user.id === bookmark.user.id && (
+          {user && (
             <button
               className='font-bold text-red-700'
               onClick={() => handleDelete(bookmark.id)}
