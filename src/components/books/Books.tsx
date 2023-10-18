@@ -11,7 +11,6 @@ type BookProps = {
 };
 const Books: React.FC<BookProps> = ({ book }) => {
   const { user } = useAuth();
-
   const handleDelete = async (id: number) => {
     const shouldDelete = window.confirm('この投稿を削除しますか？');
     if (!shouldDelete) return;
@@ -23,28 +22,15 @@ const Books: React.FC<BookProps> = ({ book }) => {
     }
   };
   return (
-    <div className='m-1 py-3 px-8  rounded-lg shadow-lg lg:w-1/4  w-1/3'>
+    <div className='m-1 py-3 px-8  rounded-lg shadow-lg'>
       <div className='flex flex-col items-center mt-3 justify-center'>
         <img
           className='w-100 h-100 rounded mr-4'
           alt='User Avatar'
           src={book.image}
         />
-        {/* <p className='text-gray-700'>{book.title}</p> */}
-        {/* <div className='flex flex-wrap items-center justify-center m-2'>
-          {book.tags.length > 0 &&
-            book.tags.map((tag, index) => (
-              <span
-                key={index}
-                className='inline-block bg-gray-500 text-white rounded-full px-3 py-1 text-sm font-semibold  mr-2'
-              >
-                {tag.name}
-              </span>
-            ))}
-        </div> */}
-        {/* <p className='text-gray-700'>{book.description}</p> */}
       </div>
-      {user && user.id === book.author.id && (
+      {user && (
         <button
           className='p-1 rounded-md font-bold text-2xl'
           onClick={() => handleDelete(book.id)}
