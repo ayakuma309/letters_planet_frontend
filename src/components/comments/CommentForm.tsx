@@ -82,7 +82,7 @@ const CommentForm: React.FC<CommentProps> = ({ postId, comments }) => {
                     <TwitterTweetEmbed tweetId={`${comment.content}`} />
                   </p>
                   <div className='flex justify-end mt-2 mx-1'>
-                    {user && comment.user && user.id === comment.user.id && (
+                    {user && (
                       <button
                         className='p-2 bg-red-500 rounded-md text-white font-bold'
                         onClick={() => handleDeleteComment(comment.id)}
