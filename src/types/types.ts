@@ -3,26 +3,15 @@ export interface UserType {
   username: string;
   email: string;
   password: string;
-  profile: ProfileType;
 }
 export type User = Pick<UserType, 'id' | 'username'>;
 
-export interface ProfileType {
-  id: number;
-  bio: string;
-  profileImageUrl: string;
-  userId: number;
-  user: UserType;
-}
 export interface PostType {
   id: number;
   videoId: string;
   url: string;
   title: string;
-  description: string;
   createdAt: string;
-  authorId: number;
-  author: UserType;
   tags: TagType[];
 }
 
@@ -37,8 +26,6 @@ export interface CommentType {
   id: number;
   content: string;
   createdAt: string;
-  userId: number;
-  user: UserType;
 }
 
 // modal
@@ -51,7 +38,6 @@ export interface ModalType {
 //bookmarks
 export interface BookmarkType {
   id: number;
-  user: UserType;
   postId: number;
   title: string;
   startAt: number;
@@ -65,7 +51,6 @@ export interface BooksType {
   description: string;
   pageCount: number | null;
   image: string;
-  author: UserType;
   tags: TagType[];
 }
 // google books api から取得した情報のインタフェース
