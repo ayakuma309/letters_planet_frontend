@@ -25,7 +25,6 @@ const QiitaItem: React.FC<Props> = ({ item }) => {
         qiitaId: item.id,
         title: item.title,
         url: item.url,
-        userName: item.user.name || 'none',
         profileImageUrl: item.user.profile_image_url,
         tags: qiitaTagNames,
       });
