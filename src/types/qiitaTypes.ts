@@ -8,14 +8,10 @@ export interface QiitaArticleProps {
   id: number;
   title: string;
   url: string;
-  username: string;
   profileImageUrl: string;
   tags: {
     name: string;
   }[];
-  author: {
-    id: number;
-  };
 }
 
 // Qiita Api レスポンスの型定義

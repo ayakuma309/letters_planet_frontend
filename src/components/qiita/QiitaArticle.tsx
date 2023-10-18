@@ -11,8 +11,6 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
   title,
   tags,
   profileImageUrl,
-  username,
-  author,
 }) => {
   const { user } = useAuth();
 
@@ -54,9 +52,8 @@ const QiitaArticle: React.FC<QiitaArticleProps> = ({
             alt='User Avatar'
             src={profileImageUrl}
           />
-          <p className='text-gray-700'>{username}</p>
         </div>
-        {user && user.id === author.id && (
+        {user && (
           <button
             className='p-1 rounded-md font-bold text-2xl'
             onClick={() => handleDeleteQiita(id)}
