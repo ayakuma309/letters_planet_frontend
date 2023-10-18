@@ -4,6 +4,11 @@ import { useRouter } from 'next/router';
 import TagSelect from './TagSelect';
 import { toast } from 'react-toastify';
 
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+//日本語の設定
+import ja from 'date-fns/locale/ja';
+
 interface VideoGridItemProps {
   id: string;
   src: string;
@@ -16,9 +21,11 @@ interface OptionType {
 }
 
 const VideoGridItem: React.FC<VideoGridItemProps> = ({ id, src, title }) => {
-  const [postText, setPostText] = useState('');
   const [selectedTags, setSelectedTags] = useState<OptionType[]>([]);
-
+  // 今日の日付を定義
+  const initialDate = new Date();
+  const [date, setDate] = React.useState(initialDate);
+  registerLocale('ja', ja);
   const router = useRouter();
 
   const handleSubmitPost = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,12 +37,11 @@ const VideoGridItem: React.FC<VideoGridItemProps> = ({ id, src, title }) => {
         videoId: id,
         url: src,
         title: title,
-        description: postText,
+        releaseAt: date,
         tags: selectedTagNames,
       });
 
       // 投稿後、投稿フォームのテキストエリアをクリア
-      setPostText('');
       setSelectedTags([]);
       router.push('/');
       toast.success('投稿が完了しました');
@@ -52,14 +58,14 @@ const VideoGridItem: React.FC<VideoGridItemProps> = ({ id, src, title }) => {
       <img src={src} alt={title} />
       <span>{title}</span>
       <form onSubmit={handleSubmitPost}>
-        <textarea
-          className='w-full h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400'
-          placeholder='動画の詳細を教えてください'
-          value={postText}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setPostText(e.target.value)
-          }
-        ></textarea>
+        <DatePicker
+          dateFormat='yyyy/MM/dd'
+          selected={date}
+          locale='ja'
+          onChange={(selectedDate) => {
+            setDate(selectedDate || initialDate);
+          }}
+        />
         <TagSelect
           value={selectedTags}
           onChange={(tags) => setSelectedTags(tags)}
