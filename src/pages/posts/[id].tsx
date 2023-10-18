@@ -70,7 +70,6 @@ const PostDetail = ({ post, comments, bookmarks }: Props) => {
             onReady={makeYTPlayer}
           />
           <p className='text-xl font-bold my-2'>{post.title}</p>
-          <p className='text-gray-700'>{post.description}</p>
           <div className='flex justify-between'>
             {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
             <TwitterShareButton
