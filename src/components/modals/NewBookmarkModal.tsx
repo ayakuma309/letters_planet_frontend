@@ -5,7 +5,7 @@ import * as z from 'zod';
 import useNewBookmarkModal from '../../hooks/useNewBookmarkModal';
 import { toast } from 'react-toastify';
 import Modal from './Modal';
-import Input from '../Input/Input';
+import Input from '../common/Input';
 // import useTimeFormatter from '@/hooks/useTimeFormatter';
 import apiClient from '@/lib/apiClient';
 
