@@ -19,10 +19,10 @@ const SeoSetting = () => {
           title: 'letters tube',
           description: 'どれから見たら良いかわからないを解決するサービスです',
           site_name: 'letters tube',
-          url: 'https://letters-festival.vercel.app/',
+          url: 'https://letters-tube.vercel.app/',
           images: [
             {
-              url: 'https://letters-festival.vercel.app/ogp.png',
+              url: 'https://letters-tube.vercel.app/ogp.png',
               width: 800,
               height: 600,
               alt: 'Og Image Alt',

@@ -4,9 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import useNewBookmarkModal from '../../hooks/useNewBookmarkModal';
 import { toast } from 'react-toastify';
-import Modal from './Modal';
-import Input from '../Input/Input';
-// import useTimeFormatter from '@/hooks/useTimeFormatter';
+import Modal from '../common/Modal';
+import Input from '../common/Input';
 import apiClient from '@/lib/apiClient';
 
 // 入力データの検証ルールを定義
@@ -23,7 +22,6 @@ type Props = {
 const NewBookmarkModal: React.FC<Props> = ({ time = 0, postId }) => {
   const newBookmarkModal = useNewBookmarkModal();
   const [loading, setLoading] = useState(false);
-  // const timeFormatter = useTimeFormatter(time);
   const {
     register,
     handleSubmit,

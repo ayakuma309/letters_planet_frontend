@@ -6,7 +6,7 @@ import Youtube from 'react-youtube';
 import TagList from '@/components/posts/TagList';
 import CommentForm from '@/components/comments/CommentForm';
 import { TwitterShareButton } from 'react-share';
-import NewBookmarkModal from '@/components/modals/NewBookmarkModal';
+import NewBookmarkModal from '@/components/timestamp/NewBookmarkModal';
 import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
 import Bookmarks from '@/components/timestamp/Bookmarks';
 import { useAuth } from '@/context/auth';
