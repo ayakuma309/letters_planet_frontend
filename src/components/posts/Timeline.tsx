@@ -15,7 +15,6 @@ const Timeline = () => {
     '/posts/get_latest_posts',
     (url) => apiClient.get(url).then((res) => res.data)
   );
-
   //最近の投稿を取得
   const [searchResults, setSearchResults] = useState<PostType[]>(latestPosts);
   //タグ検索
