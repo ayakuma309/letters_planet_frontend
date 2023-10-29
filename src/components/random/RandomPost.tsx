@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { PostType } from '@/types/types';
-import { TwitterShareButton } from 'react-share';
 
 type Props = {
   post: PostType;
