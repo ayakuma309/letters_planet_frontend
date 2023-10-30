@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import apiClient from '@/lib/apiClient';
-import { BookmarkType, CommentType, PostType } from '@/types/types';
+import { BookmarkType, PostType } from '@/types/types';
 import { GetServerSideProps } from 'next';
 import Youtube from 'react-youtube';
 import TagList from '@/components/posts/TagList';
-import CommentForm from '@/components/comments/CommentForm';
 import { TwitterShareButton } from 'react-share';
 import NewBookmarkModal from '@/components/timestamp/NewBookmarkModal';
 import useNewBookmarkModal from '@/hooks/useNewBookmarkModal';
@@ -13,7 +12,6 @@ import { useAuth } from '@/context/auth';
 
 type Props = {
   post: PostType;
-  comments: CommentType[];
   bookmarks: BookmarkType[];
 };
 
@@ -21,17 +19,14 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
   const postId = id;
   try {
-    const [postResponse, commentsResponse, bookmarksResponse] =
-      await Promise.all([
-        apiClient.get(`/posts/post/${id}`),
-        apiClient.get(`/comments/comments/${postId}`),
-        apiClient.get(`/bookmarks/bookmarks/${postId}`),
-      ]);
+    const [postResponse, bookmarksResponse] = await Promise.all([
+      apiClient.get(`/posts/post/${id}`),
+      apiClient.get(`/bookmarks/bookmarks/${postId}`),
+    ]);
 
     return {
       props: {
         post: postResponse.data,
-        comments: commentsResponse.data,
         bookmarks: bookmarksResponse.data,
       },
     };
@@ -43,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
 };
 
-const PostDetail = ({ post, comments, bookmarks }: Props) => {
+const PostDetail = ({ post, bookmarks }: Props) => {
   const { user } = useAuth();
   const newBookmarkModal = useNewBookmarkModal();
   const [YTPlayer, setYTPlayer] = useState<YT.Player>();
@@ -99,8 +94,6 @@ const PostDetail = ({ post, comments, bookmarks }: Props) => {
       {bookmarks.length != 0 && (
         <Bookmarks bookmarks={bookmarks} ytPlayer={YTPlayer} />
       )}
-      {/* tweet情報の表示 */}
-      <CommentForm postId={post.id} comments={comments} />
     </div>
   );
 };
